@@ -17,6 +17,11 @@
     width: 100% !important;
     margin: 0 !important;
 }
+#novel_color>* {
+    width: 730px;
+    margin-left: auto;
+    margin-right: auto;
+}
 .novel_bn {
 	width:300px !important;
 	margin: 0 auto !important;
@@ -28,5 +33,6 @@
 	float: left;
 }
 #novel_no {
-	text-align: center !important;
+    text-align: center !important;
+    width: 100% !important;
 }
