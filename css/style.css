@@ -1,0 +1,32 @@
+#novel_honbun {
+    font-family: "Source Han Serif JP", "Hiragino Mincho", Serif !important;
+    font-weight: 200 !important;
+    margin: 30px 0 !important;
+    padding: 20px 100px !important;
+    width: 100% !important;
+    height: calc(100vh - 180px) !important;
+    overflow: scroll !important;
+    -webkit-writing-mode: vertical-rl !important;
+    writing-mode: vertical-rl !important;
+    box-sizing: border-box !important;
+}
+#novel_contents {
+    width: auto !important;
+}
+#novel_color {
+    width: 100% !important;
+    margin: 0 !important;
+}
+.novel_bn {
+	width:300px !important;
+	margin: 0 auto !important;
+}
+.novel_bn a:first-child {
+	float: right;
+}
+.novel_bn a:nth-child(2) {
+	float: left;
+}
+#novel_no {
+	text-align: center !important;
+}

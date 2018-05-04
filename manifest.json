@@ -1,0 +1,18 @@
+{
+    "name": "縦書きになろう",
+    "version": "0.1.0",
+    "manifest_version": 2,
+    "description": "小説家になろうを縦書きで読みやすくします。",
+    "icons": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://ncode.syosetu.com/*","https://novel18.syosetu.com/*"],
+        "css": ["css/style.css"],
+        "js": ["js/jquery-3.3.1.min.js", "js/script.js"]
+      }
+    ]
+  }
