@@ -15,13 +15,13 @@ if (honbun.length) {
         const sl = honbun.scrollLeft() - h;
         honbun.animate({scrollLeft: sl});
     }
-    const pageUp = () => {
+    const pageUp = (rate = 1.0) => {
         const pw = honbun.width() - 50;
-        scrollLeftBy(-pw);
+        scrollLeftBy(-pw * rate);
     }
-    const pageDown = () => {
+    const pageDown = (rate = 1.0) => {
         const pw = honbun.width() - 50;
-        scrollLeftBy(pw);
+        scrollLeftBy(pw * rate);
     }
     const stop = (e) => {
         e.preventDefault();
@@ -40,8 +40,8 @@ if (honbun.length) {
     };
     mapping[VK_PAGEUP] = pageUp;
     mapping[VK_PAGEDOWN] = pageDown;
-    mapping[VK_RIGHT] = (e) => e.shiftKey ? pageUp() : scrollLeftBy(-200);
-    mapping[VK_LEFT] = (e) => e.shiftKey ? pageDown() : scrollLeftBy(200);
+    mapping[VK_RIGHT] = (e) => e.shiftKey ? pageUp(0.5) : scrollLeftBy(-200);
+    mapping[VK_LEFT] = (e) => e.shiftKey ? pageDown(0.5) : scrollLeftBy(200);
     mapping[VK_HOME] = (e) => scrollLeftBy(99999);
     mapping[VK_END] = (e) => scrollLeftBy(-99999);
     mapping[VK_P] = (e) => $('.js_prev-link:eq(0)').each(jump);
