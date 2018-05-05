@@ -3,6 +3,8 @@
     max-width: 100% !important;
 }
 .widget-episodeBody {
+    font-family: "Source Han Serif JP", "Hiragino Mincho", Serif !important;
+    font-weight: 200 !important;
     writing-mode: vertical-rl !important;
     height: calc(100vh - 210px) !important;
     width: 100% !important;
