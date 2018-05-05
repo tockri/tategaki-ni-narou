@@ -11,9 +11,13 @@ if (honbun.length) {
     const VK_P = 80;
     const VK_B = 66;
 
+    var locked = false;
     const scrollLeftBy = (h) => {
-        const sl = honbun.scrollLeft() - h;
-        honbun.animate({scrollLeft: sl});
+        if (!locked) {
+            locked = true;
+            const sl = honbun.scrollLeft() - h;
+            honbun.animate({scrollLeft: sl}, () => {locked = false});
+        }
     }
     const pageUp = (rate = 1.0) => {
         const pw = honbun.width() - 50;
