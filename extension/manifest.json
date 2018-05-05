@@ -11,8 +11,13 @@
     "content_scripts": [
       {
         "matches": ["https://ncode.syosetu.com/*","https://novel18.syosetu.com/*"],
-        "css": ["css/style.css"],
-        "js": ["js/jquery-3.3.1.min.js", "js/script.js"]
+        "css": ["css/narou.css"],
+        "js": ["js/jquery-3.3.1.min.js", "js/narou.js"]
+      },
+      {
+        "matches": ["https://kakuyomu.jp/works/*/episodes/*"],
+        "css": ["css/kakuyomu.css"],
+        "js": ["js/jquery-3.3.1.min.js", "js/kakuyomu.js"]
       }
     ]
   }

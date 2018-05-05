@@ -1,5 +1,5 @@
-const honbun = $('#novel_honbun');
-if (honbun.length) {
+const reader = $('#novel_honbun');
+if (reader.length) {
     const VK_SPACE = 32;
     const VK_HOME = 36;
     const VK_END = 35;
@@ -15,16 +15,16 @@ if (honbun.length) {
     const scrollLeftBy = (h) => {
         if (!locked) {
             locked = true;
-            const sl = honbun.scrollLeft() - h;
-            honbun.animate({scrollLeft: sl}, () => {locked = false});
+            const sl = reader.scrollLeft() - h;
+            reader.animate({scrollLeft: sl}, () => {locked = false});
         }
     }
     const pageUp = (rate = 1.0) => {
-        const pw = honbun.width() - 50;
+        const pw = reader.width() - 50;
         scrollLeftBy(-pw * rate);
     }
     const pageDown = (rate = 1.0) => {
-        const pw = honbun.width() - 50;
+        const pw = reader.width() - 50;
         scrollLeftBy(pw * rate);
     }
     const stop = (e) => {
@@ -46,7 +46,7 @@ if (honbun.length) {
     mapping[VK_N] = (e) => $('.js_next-link:eq(0)').each(jump);
     mapping[VK_B] = (e) => $('.set_siori:eq(0)').click();
 
-    $(document).scrollTop(honbun.offset().top - 100)
+    $(document).scrollTop(reader.offset().top - 100)
     .keydown((e) => {
         const func = mapping[e.which];
         if (func) {

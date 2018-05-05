@@ -6,7 +6,6 @@
     width: 100% !important;
     height: calc(100vh - 210px) !important;
     overflow: scroll !important;
-    -webkit-writing-mode: vertical-rl !important;
     writing-mode: vertical-rl !important;
     box-sizing: border-box !important;
 }
