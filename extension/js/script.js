@@ -31,13 +31,7 @@ if (honbun.length) {
         location.href = a.href;
     }
     const mapping = {};
-    mapping[VK_SPACE] = (e) => {
-        if (e.shiftKey) {
-            pageUp();
-        } else {
-            pageDown();
-        }
-    };
+    mapping[VK_SPACE] = (e) => e.shiftKey ? pageUp() : pageDown();
     mapping[VK_PAGEUP] = pageUp;
     mapping[VK_PAGEDOWN] = pageDown;
     mapping[VK_RIGHT] = (e) => e.shiftKey ? pageUp(0.5) : scrollLeftBy(-200);
