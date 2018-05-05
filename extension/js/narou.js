@@ -9,6 +9,8 @@ if (reader.length) {
             e.text(t.replace(/<</, '') + ' >>').addClass('js_prev-link');
         }
     });
+    reader.prepend($('#novel_p').remove())
+    .prepend($('p.novel_subtitle').remove());
     new NovelReader({
         reader: reader,
         prevFunc: () => $('.js_prev-link').jump(),

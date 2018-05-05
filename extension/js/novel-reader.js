@@ -11,7 +11,6 @@ class NovelReader {
         this.prevFunc = conf.prevFunc;
         this.nextFunc = conf.nextFunc;
         this.bookmarkFunc = conf.bookmarkFunc;
-        $(document).scrollTop(this.reader.offset().top - 100);
         this._initKeyMap();
     }
     scrollLeftBy(h) {
