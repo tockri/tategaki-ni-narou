@@ -11,8 +11,7 @@ if (reader.length) {
     });
     reader.prepend($('#novel_p').remove())
     .prepend($('p.novel_subtitle').remove());
-    new NovelReader({
-        reader: reader,
+    NovelReader(reader, {
         prevFunc: () => $('.js_prev-link').jump(),
         nextFunc: () => $('.js_next-link').jump(),
         bookmarkFunc: () => $('.set_siori:eq(0)').click(),
