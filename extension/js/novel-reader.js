@@ -30,29 +30,30 @@ class NovelReader {
         this.scrollLeftBy(pw * rate);
     }
     _initKeyMap() {
-        const VK_SPACE = 32;
-        const VK_HOME = 36;
-        const VK_END = 35;
-        const VK_RIGHT = 39;
-        const VK_LEFT = 37;
-        const VK_PAGEDOWN = 34;
-        const VK_PAGEUP = 33;
-        const VK_N = 78;
-        const VK_P = 80;
-        const VK_B = 66;
-        const VK_M = 77;
-        const mapping = {}
-        mapping[VK_SPACE] = (e) => e.shiftKey ? this.pageUp() : this.pageDown();
-        mapping[VK_PAGEUP] = this.pageUp.bind(this);
-        mapping[VK_PAGEDOWN] = this.pageDown.bind(this);
-        mapping[VK_RIGHT] = (e) => e.shiftKey ? this.pageUp(0.5) : this.scrollLeftBy(-200);
-        mapping[VK_LEFT] = (e) => e.shiftKey ? this.pageDown(0.5) : this.scrollLeftBy(200);
-        mapping[VK_HOME] = (e) => this.scrollLeftBy(99999);
-        mapping[VK_END] = (e) => this.scrollLeftBy(-99999);
-        mapping[VK_P] = this.prevFunc;
-        mapping[VK_N] = this.nextFunc;
-        mapping[VK_B] = this.bookmarkFunc;
-        mapping[VK_M] = this.myPageFunc;
+        const mapping = {
+            // SPACE
+            32: (e) => e.shiftKey ? this.pageUp() : this.pageDown(),
+            // PAGEUP
+            33: (e) => this.pageUp(),
+            // PAGEDOWN
+            34: (e) => this.pageDown(),
+            // END
+            35: (e) => this.scrollLeftBy(-99999),
+            // HOME
+            36: (e) => this.scrollLeftBy(99999),
+            // LEFT
+            37: (e) => e.shiftKey ? this.pageDown(0.5) : this.scrollLeftBy(200),
+            // RIGHT
+            39: (e) => e.shiftKey ? this.pageUp(0.5) : this.scrollLeftBy(-200),
+            // B
+            66: this.bookmarkFunc,
+            // N
+            78: this.nextFunc,
+            // M
+            77: this.myPageFunc,
+            // P
+            80: this.prevFunc
+        }
         $(document).keydown((e) => {
             const func = mapping[e.which];
             if (func) {
