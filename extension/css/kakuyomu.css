@@ -11,6 +11,12 @@
     overflow: scroll !important;
     padding: 20px 0 !important;
 }
+#contentMain-header {
+    display: none;
+}
+#page-works-episodes-episode.writingDirection-horizontal .widget-episodeBody #contentMain-header {
+    display: block;
+}
 #page-works-episodes-episode.writingDirection-horizontal .widget-episodeBody #contentMain-header .widget-episodeTitle {
     margin: 0;
     padding: 0 20px;
