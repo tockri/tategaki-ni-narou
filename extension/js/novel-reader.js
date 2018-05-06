@@ -11,6 +11,7 @@ class NovelReader {
         this.prevFunc = conf.prevFunc;
         this.nextFunc = conf.nextFunc;
         this.bookmarkFunc = conf.bookmarkFunc;
+        this.myPageFunc = conf.myPageFunc;
         this._initKeyMap();
     }
     scrollLeftBy(h) {
@@ -39,6 +40,7 @@ class NovelReader {
         const VK_N = 78;
         const VK_P = 80;
         const VK_B = 66;
+        const VK_M = 77;
         const mapping = {}
         mapping[VK_SPACE] = (e) => e.shiftKey ? this.pageUp() : this.pageDown();
         mapping[VK_PAGEUP] = this.pageUp.bind(this);
@@ -50,6 +52,7 @@ class NovelReader {
         mapping[VK_P] = this.prevFunc;
         mapping[VK_N] = this.nextFunc;
         mapping[VK_B] = this.bookmarkFunc;
+        mapping[VK_M] = this.myPageFunc;
         $(document).keydown((e) => {
             const func = mapping[e.which];
             if (func) {

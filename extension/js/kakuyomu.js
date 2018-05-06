@@ -6,6 +6,7 @@ if (reader.length) {
         reader: reader,
         prevFunc: () => $('#contentMain-previousEpisode>a').jump(),
         nextFunc: () => $('#contentMain-nextEpisode>a').jump(),
-        bookmarkFunc: null
+        bookmarkFunc: null,
+        myPageFunc: () => location.href = 'https://kakuyomu.jp/my/antenna/works'
     });
 }

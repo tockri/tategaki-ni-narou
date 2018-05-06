@@ -15,6 +15,7 @@ if (reader.length) {
         reader: reader,
         prevFunc: () => $('.js_prev-link').jump(),
         nextFunc: () => $('.js_next-link').jump(),
-        bookmarkFunc: () => $('.set_siori:eq(0)').click()
+        bookmarkFunc: () => $('.set_siori:eq(0)').click(),
+        myPageFunc: () => $('.userfavnovellist').jump()
     });
 }
