@@ -11,6 +11,10 @@
     overflow: scroll !important;
     padding: 20px 0 !important;
 }
+.widget-episodeBody .emphasisDots>span {
+    padding: 0 0.2em;
+    background-position: 1.7em 0.5em;
+}
 #contentMain-header {
     display: none;
 }
