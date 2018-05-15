@@ -4,9 +4,9 @@ if (reader.length) {
         const e = $(elem);
         const t = e.text();
         if (t.match(/>>/)) {
-            e.text('<< ' + t.replace(/>>/, '')).addClass('js_next-link');
+            e.text('<< ' + t.replace(/>>/, '')).addClass('js_next-link').show();
         } else if (t.match(/<</)) {
-            e.text(t.replace(/<</, '') + ' >>').addClass('js_prev-link');
+            e.text(t.replace(/<</, '') + ' >>').addClass('js_prev-link').show();
         }
     });
     reader.prepend($('#novel_p').remove())

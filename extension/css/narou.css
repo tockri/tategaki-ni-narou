@@ -2,7 +2,7 @@
     font-family: "Source Han Serif JP", "Hiragino Mincho", Serif !important;
     font-weight: 200 !important;
     margin: 20px 0 !important;
-    padding: 20px 100px !important;
+    padding: 0 100px !important;
     width: 100% !important;
     height: calc(100vh - 210px) !important;
     overflow: scroll !important;
@@ -13,13 +13,12 @@
     display: none;
 }
 .contents1 {
-    position: absolute !important;
-    left: 0 !important;
-    right: 0 !important;
-    top: 48px !important;
+    position: relative !important;
+    margin: 0 !important;
+    top: -6px !important;
+    height: 60px !important;
     width: 100% !important;
-    height: 45px !important;
-    padding: 12px 20px !important;
+    padding: 5px 20px !important;
     text-align: left !important;
     box-sizing: border-box !important;
 }
@@ -49,14 +48,18 @@
     margin-left: auto;
     margin-right: auto;
 }
-.novel_bn {
-	width:300px !important;
-	margin: 0 auto !important;
+#novel_color>.novel_bn:first-child {
+    position: absolute;
+    width: 200px;
+    right: 20px;
+    top: -73px;
 }
 .novel_bn a:first-child {
+    display: none;
 	float: right;
 }
 .novel_bn a:nth-child(2) {
+    display: none;
 	float: left;
 }
 .novel_bn:after {
@@ -65,8 +68,10 @@
     display: block;
 }
 #novel_color #novel_no {
-    text-align: center;
-    width: 100%;
-    margin-top: -1.8em;
-
+    position: absolute;
+    margin-top: -5em;
+    display: block;
+    width: 150px;
+    left: 50%;
+    margin-left: -75px;
 }
