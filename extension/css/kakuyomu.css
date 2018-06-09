@@ -25,3 +25,11 @@
     margin: 0;
     padding: 0 20px;
 }
+#page-works-episodes-episode.writingDirection-horizontal #contentMain-header .chapterTitle.level2:before {
+    border-top: 0 !important;
+    border-right: 1px solid #abadad !important;
+    top: 0 !important;
+    left: 53px !important;
+    width: 0 !important;
+    height: 100% !important;
+}
