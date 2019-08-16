@@ -10,7 +10,7 @@
     },
     "content_scripts": [
       {
-        "matches": ["https://ncode.syosetu.com/*","https://novel18.syosetu.com/*"],
+        "matches": ["https://ncode.syosetu.com/*","https://novel18.syosetu.com/*","http://ncode.syosetu.com/*","http://novel18.syosetu.com/*"],
         "css": ["css/narou.css"],
         "js": ["js/jquery-3.3.1.min.js", "js/novel-reader.js", "js/narou.js"]
       },

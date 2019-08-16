@@ -42,7 +42,9 @@ const NovelReader = (reader, conf) => {
         // M
         77: conf.myPageFunc,
         // P
-        80: conf.prevFunc
+        80: conf.prevFunc,
+        // L
+        76: conf.indexFunc
     };
     $(document).keydown((e) => {
         const func = mapping[e.which];
