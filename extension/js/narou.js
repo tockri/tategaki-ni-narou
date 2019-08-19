@@ -16,6 +16,6 @@ if (reader.length) {
         nextFunc: () => $('.js_next-link').jump(),
         bookmarkFunc: () => $('.set_siori:eq(0)').click(),
         myPageFunc: () => $('.userfavnovellist').jump(),
-        indexFunc: () => $('#container>.contents1>a:first-child').jump()
+        indexFunc: () => $('#container>.contents1>a:eq(0)').jump()
     });
 }
