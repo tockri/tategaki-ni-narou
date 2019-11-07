@@ -15,7 +15,7 @@ $(() => {
         NovelReader(reader, {
             prevFunc: () => $('.js_prev-link').jump(),
             nextFunc: () => $('.js_next-link').jump(),
-            bookmarkFunc: () => $('.set_siori:eq(0)').click(),
+            bookmarkFunc: () => $('.list_menu_novelview_after:eq(0)>a').jump(),
             myPageFunc: () => $('.userfavnovellist').jump(),
             indexFunc: () => $('#container>.contents1>a:eq(0)').jump()
         });
