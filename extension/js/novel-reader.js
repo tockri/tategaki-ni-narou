@@ -20,6 +20,49 @@ const NovelReader = (reader, conf) => {
         const pw = reader.width() - 50;
         scrollLeftBy(pw * rate);
     }
+    const rotateParentheses = ($elem) => {
+        const html = $elem.html();
+        $elem.html(html.replace(/[（）｛｝〔〕【】《》〈〉「」『』［］]/g, (m) => {
+            switch (m) {
+                case '（':
+                    return '︵';
+                case '）':
+                    return '︶';
+                case '｛':
+                    return '︷';
+                case '｝':
+                    return '︸';
+                case '〔':
+                    return '︹';
+                case '〕':
+                    return '︺';
+                case '【':
+                    return '︻';
+                case '】':
+                    return '︼';
+                case '《':
+                    return '︽';
+                case '》':
+                    return '︾';
+                case '〈':
+                    return '︿';
+                case '〉':
+                    return '﹀';
+                case '「':
+                    return '﹁';
+                case '」':
+                    return '﹂';
+                case '『':
+                    return '﹃';
+                case '』':
+                    return '﹄';
+                case '［':
+                    return '﹇';
+                case '］':
+                    return '﹈';
+            }
+        }));
+    }
     const mapping = {
         // SPACE
         32: (e) => e.shiftKey ? pageUp() : pageDown(),
@@ -58,4 +101,5 @@ const NovelReader = (reader, conf) => {
             e.stopPropagation();
         }
     });
+    rotateParentheses($(conf.articleSelector));
 };

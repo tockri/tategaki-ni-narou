@@ -8,7 +8,8 @@ $(() => {
             nextFunc: () => $('#contentMain-nextEpisode>a').jump(),
             bookmarkFunc: null,
             myPageFunc: () => location.href = 'https://kakuyomu.jp/my/antenna/works',
-            indexFunc: () => $('#worksEpisodesEpisodeHeader-breadcrumbs a:first-child').jump()
+            indexFunc: () => $('#worksEpisodesEpisodeHeader-breadcrumbs a:first-child').jump(),
+            articleSelector: '.widget-episodeBody'
         });
     }
 });

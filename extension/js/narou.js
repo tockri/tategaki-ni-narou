@@ -17,7 +17,8 @@ $(() => {
             nextFunc: () => $('.js_next-link').jump(),
             bookmarkFunc: () => $('.set_siori:eq(0)').click(),
             myPageFunc: () => $('.list_menu_novelview_after:eq(0)>a').jump(),
-            indexFunc: () => $('#container>.contents1>a:eq(0)').jump()
+            indexFunc: () => $('#container>.contents1>a:eq(0)').jump(),
+            articleSelector: '#novel_honbun'
         });
     }
 });
