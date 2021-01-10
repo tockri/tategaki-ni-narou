@@ -10,8 +10,9 @@ $(() => {
                 e.text(t.replace(/<</, '') + ' >>').addClass('js_prev-link').show();
             }
         });
-        reader.prepend($('#novel_p').remove())
-        .prepend($('p.novel_subtitle').remove());
+        reader.prepend($('#novel_p'))
+            .prepend($('p.novel_subtitle'))
+            .append($('#novel_a'));
         NovelReader(reader, {
             prevFunc: () => $('.js_prev-link').jump(),
             nextFunc: () => $('.js_next-link').jump(),

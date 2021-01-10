@@ -2,7 +2,7 @@ $(() => {
     const reader = $('.js-episode-body');
     if (reader.length) {
         $(document).scrollTop(0);
-        reader.prepend($('#contentMain-header').remove());
+        reader.prepend($('#contentMain-header'));
         NovelReader(reader, {
             prevFunc: () => $('#contentMain-previousEpisode>a').jump(),
             nextFunc: () => $('#contentMain-nextEpisode>a').jump(),

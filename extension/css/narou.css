@@ -36,6 +36,15 @@
     border-left: 3px double #999999;
     font-size: 100% !important;
 }
+#novel_honbun #novel_a {
+    display: block;
+    margin: 0 20px;
+    padding: 20px;
+    width: auto;
+    border-top: none;
+    border-right: 3px double #999999;
+    font-size: 100% !important;
+}
 #novel_contents {
     width: auto !important;
 }
