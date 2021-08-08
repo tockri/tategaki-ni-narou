@@ -9,7 +9,7 @@ $(() => {
             } else if (t.match(/<</)) {
                 e.text(t.replace(/<</, '') + ' >>').addClass('js_prev-link').show();
             }
-        });
+        })
         reader.prepend($('#novel_p'))
             .prepend($('p.novel_subtitle'))
             .append($('#novel_a'));
