@@ -1,6 +1,6 @@
 {
   "name": "縦書きになろう",
-  "version": "0.1.9",
+  "version": "1.0.1",
   "manifest_version": 3,
   "description": "小説家になろうを縦書きで読みやすくします。",
   "icons": {
@@ -10,15 +10,34 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://ncode.syosetu.com/*","https://novel18.syosetu.com/*","http://ncode.syosetu.com/*","http://novel18.syosetu.com/*"],
-      "css": ["css/narou.css"],
-      "js": ["js/jquery-3.3.1.min.js", "js/novel-reader.js", "js/narou.js"],
+      "matches": [
+        "https://ncode.syosetu.com/*",
+        "https://novel18.syosetu.com/*",
+        "http://ncode.syosetu.com/*",
+        "http://novel18.syosetu.com/*"
+      ],
+      "css": [
+        "css/narou.css"
+      ],
+      "js": [
+        "js/jquery-3.3.1.min.js",
+        "js/novel-reader.js",
+        "js/narou.js"
+      ],
       "run_at": "document_start"
     },
     {
-      "matches": ["https://kakuyomu.jp/works/*/episodes/*"],
-      "css": ["css/kakuyomu.css"],
-      "js": ["js/jquery-3.3.1.min.js", "js/novel-reader.js", "js/kakuyomu.js"],
+      "matches": [
+        "https://kakuyomu.jp/works/*/episodes/*"
+      ],
+      "css": [
+        "css/kakuyomu.css"
+      ],
+      "js": [
+        "js/jquery-3.3.1.min.js",
+        "js/novel-reader.js",
+        "js/kakuyomu.js"
+      ],
       "run_at": "document_start"
     }
   ]

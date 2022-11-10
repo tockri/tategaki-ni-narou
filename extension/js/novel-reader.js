@@ -1,4 +1,4 @@
-$.fn.jump = function() {
+$.fn.jump = function () {
     if (this[0] && this[0].href) {
         location.href = this[0].href;
     }
@@ -9,7 +9,7 @@ const NovelReader = (reader, conf) => {
         if (!locked) {
             locked = true;
             const sl = reader.scrollLeft() - h;
-            reader.animate({scrollLeft: sl}, () => {locked = false});
+            reader.animate({ scrollLeft: sl }, () => { locked = false });
         }
     }
     const pageUp = (rate = 1.0) => {
@@ -102,4 +102,10 @@ const NovelReader = (reader, conf) => {
         }
     });
     rotateParentheses($(conf.articleSelector));
+    reader.on('scroll', (e) => {
+        if (reader.scrollLeft() < -2000 && reader.parent().css('padding-bottom') !== '1px') {
+            reader.parent().css('padding-bottom', 1);
+            console.log('repaint!');
+        }
+    });
 };
