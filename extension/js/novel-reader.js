@@ -102,10 +102,4 @@ const NovelReader = (reader, conf) => {
         }
     });
     rotateParentheses($(conf.articleSelector));
-    reader.on('scroll', (e) => {
-        if (reader.scrollLeft() < -2000 && reader.parent().css('padding-bottom') !== '1px') {
-            reader.parent().css('padding-bottom', 1);
-            console.log('repaint!');
-        }
-    });
 };

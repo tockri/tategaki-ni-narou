@@ -26,5 +26,16 @@ $(() => {
             indexFunc: () => $('#container>.contents1>a:eq(0)').jump(),
             articleSelector: '#novel_honbun'
         });
+        // <!-- avoid chromium bug: https://bugs.chromium.org/p/chromium/issues/detail?id=1383753
+        $('#novel_color').prepend('<div id="scroll-log" class="scroll-log"></div>');
+        const scrollLog = $('#scroll-log').css({
+            height: 1,
+            width: 1,
+            overflow: 'hidden'
+        });
+        reader.on('scroll', (e) => {
+            scrollLog.text(`scroll=${reader[0].scrollLeft}`);
+        })
+        // -->
     }
 });
