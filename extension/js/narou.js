@@ -8,7 +8,23 @@ $(() => {
             .append('<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300&display=swap" rel="stylesheet">');
         }
 
-        const prepareUpperPager = () => {
+        const prepareUpperPagerForMobile = () => {
+            const bn = $('.novel_bn:eq(0)');
+            const prev = bn.children('.link_prev');
+            const prev_link = prev.children('a');
+            prev_link.text(prev_link.text().replace(/<</, '') + ' >>');
+            const next = bn.children('.link_next');
+            const next_link = next.children('a');
+            next_link.text('<< ' + next_link.text().replace(/>>/,''));
+            const back = bn.children('.link_back');
+            const no = $('#novel_no');
+            prev.append(next_link);
+            next.append(prev_link);
+            back.text(no.text());
+            no.remove();
+        }
+
+        const prepareUpperPagerForPC = () => {
             const bn = $('.novel_bn:eq(0)');
             const up = $('<div class="tnn-pager">\
                             <div class="tnn-next"></div>\
@@ -34,7 +50,19 @@ $(() => {
             bn.remove();
         }
 
-        const prepareBottomPager = () => {
+        const prepareBottomPagerForMobile = () => {
+            const bn = $('.novel_bn:eq(1)');
+            const prev = bn.children('.link_prev');
+            const prev_link = prev.children('a').addClass('js_prev-link');
+            prev_link.text(prev_link.text().replace(/<</, '') + ' >>');
+            const next = bn.children('.link_next');
+            const next_link = next.children('a').addClass('js_next-link');
+            next_link.text('<< ' + next_link.text().replace(/>>/,''));
+            prev.append(next_link);
+            next.append(prev_link);
+        }
+
+        const prepareBottomPagerForPC = () => {
             const bn = $('.novel_bn:eq(0)');
             const btm = $('<div class="tnn-pager">\
                             <div class="tnn-next"></div>\
@@ -65,9 +93,16 @@ $(() => {
             reader.append($('#novel_a')); // あとがき
         }
 
+        const isMobile = () => $('.novel_bn>.link_prev').length > 0
+
         prepareHead();
-        prepareUpperPager();
-        prepareBottomPager();
+        if (isMobile()) {
+            prepareUpperPagerForMobile();
+            prepareBottomPagerForMobile();
+        } else {
+            prepareUpperPagerForPC();
+            prepareBottomPagerForPC();
+        }
         prepareMain();
         
         NovelReader(reader, {
