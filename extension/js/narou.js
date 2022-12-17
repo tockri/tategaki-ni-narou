@@ -89,7 +89,7 @@ $(() => {
 
         const prepareMain = () => {
             reader.prepend($('#novel_p')); // 前文
-            reader.prepend($('p.novel_subtitle')); // 章タイトル
+            reader.prepend($('.novel_subtitle')); // 章タイトル
             reader.append($('#novel_a')); // あとがき
         }
 
