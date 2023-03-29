@@ -4,7 +4,7 @@ $.fn.jump = function () {
     }
 }
 const NovelReader = (reader, conf) => {
-    var locked = false;
+    let locked = false;
     const scrollLeftBy = (h) => {
         if (!locked) {
             locked = true;
@@ -93,7 +93,7 @@ const NovelReader = (reader, conf) => {
         // X
         88: (e) => pageUp(0.5)
     };
-    $(document).keydown((e) => {
+    $(document).on('keydown', (e) => {
         const func = mapping[e.which];
         if (func) {
             func(e);
@@ -101,5 +101,17 @@ const NovelReader = (reader, conf) => {
             e.stopPropagation();
         }
     });
+    reader.append('<button class="tategaki-left"></button>');
+    $(document).click((e) => {
+        if (e.target.className === 'tategaki-left') {
+            pageDown(0.5);
+        }
+    });
+    reader.prepend('<button class="tategaki-right"></button>');
+    $(document).click((e) => {
+        if (e.target.className === 'tategaki-right') {
+            pageUp(0.5);
+        }
+    })
     rotateParentheses($(conf.articleSelector));
 };

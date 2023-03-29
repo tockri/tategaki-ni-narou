@@ -37,3 +37,19 @@
     width: 0 !important;
     height: 100% !important;
 }
+.tategaki-left {
+    position: fixed;
+    height: calc(100vh - 210px);
+    left: 0;
+    width: 100px;
+    background-color: transparent;
+    border: 0 none;
+}
+.tategaki-right {
+    position: fixed;
+    height: calc(100vh - 210px);
+    right: 0;
+    width: 100px;
+    background-color: transparent;
+    border: 0 none;
+}

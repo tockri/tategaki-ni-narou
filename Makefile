@@ -21,5 +21,6 @@ build_wsl: build get_winuser
 
 .PHONY: copy_wsl
 copy_wsl: get_winuser
-	mkdir -p /mnt/c/Users/$(WINUSER)/Downloads/tategaki-ni-narou
-	cp -r . /mnt/c/Users/$(WINUSER)/Downloads/tategaki-ni-narou
+	mkdir -p /mnt/c/Users/$(WINUSER)/dev/github/tategaki-ni-narou
+	cp -rf extension /mnt/c/Users/$(WINUSER)/dev/github/tategaki-ni-narou/
+
