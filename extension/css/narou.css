@@ -8,7 +8,6 @@
     overflow: scroll !important;
     writing-mode: vertical-rl !important;
     box-sizing: border-box !important;
-    position: relative;
 }
 #novel_p, .novel_subtitle {
     display: none;
@@ -65,18 +64,20 @@
     display: none;
 }
 .tategaki-left {
-    position: fixed;
+    position: absolute;
     height: calc(100vh - 210px);
     left: 0;
-    width: 100px;
+    width: 15%;
     background-color: transparent;
     border: 0 none;
+    z-index: 2;
 }
 .tategaki-right {
-    position: fixed;
+    position: absolute;
     height: calc(100vh - 210px);
     right: 0;
-    width: 100px;
+    width: 15%;
     background-color: transparent;
     border: 0 none;
+    z-index: 2;
 }

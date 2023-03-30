@@ -13,11 +13,13 @@ const NovelReader = (reader, conf) => {
         }
     }
     const pageUp = (rate = 1.0) => {
-        const pw = reader.width() - 50;
+        const rw = reader.width();
+        const pw = rw * (rw >= 360 ? 0.96 : 3.5);
         scrollLeftBy(-pw * rate);
     }
     const pageDown = (rate = 1.0) => {
-        const pw = reader.width() - 50;
+        const rw = reader.width();
+        const pw = rw * (rw >= 360 ? 0.96 : 3.5);
         scrollLeftBy(pw * rate);
     }
     const rotateParentheses = ($elem) => {
@@ -101,17 +103,15 @@ const NovelReader = (reader, conf) => {
             e.stopPropagation();
         }
     });
-    reader.append('<button class="tategaki-left"></button>');
-    $(document).click((e) => {
+    reader.before(
+        '<button class="tategaki-left"></button><button class="tategaki-right"></button>'
+    );
+    $(document).on('click', (e) => {
         if (e.target.className === 'tategaki-left') {
             pageDown(0.5);
-        }
-    });
-    reader.prepend('<button class="tategaki-right"></button>');
-    $(document).click((e) => {
-        if (e.target.className === 'tategaki-right') {
+        } else if (e.target.className === 'tategaki-right') {
             pageUp(0.5);
         }
-    })
+    });
     rotateParentheses($(conf.articleSelector));
 };
