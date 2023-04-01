@@ -104,7 +104,7 @@ const NovelReader = (reader, conf) => {
         }
     });
     reader.before(
-        '<button class="tategaki-left"></button><button class="tategaki-right"></button>'
+        '<div class="tategaki-left"></div><div class="tategaki-right"></div>'
     );
     $(document).on('click', (e) => {
         if (e.target.className === 'tategaki-left') {

@@ -1,6 +1,6 @@
 {
   "name": "縦書きになろう",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "manifest_version": 3,
   "description": "小説家になろうを縦書きで読みやすくします。",
   "icons": {
