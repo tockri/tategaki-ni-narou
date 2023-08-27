@@ -1,5 +1,5 @@
 #novel_honbun {
-    font-family: "Noto Serif JP", Serif !important;
+    font-family: "Noto Serif JP", serif !important;
     font-weight: 200 !important;
     margin: 20px 0 !important;
     padding: 0 100px !important;
@@ -60,9 +60,6 @@
     padding: 0 2em;
     font-size: 80%;
 }
-.novel_bn____ {
-    display: none;
-}
 .tategaki-left {
     position: absolute;
     height: calc(100vh - 210px);
@@ -80,4 +77,21 @@
     background-color: transparent;
     border: 0 none;
     z-index: 2;
+}
+
+.novel_bn:has(> div) {
+    background-color: red;
+}
+
+.novel_bn:has(> a) {
+    background-color: #ccccff;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+.novel_bn:has(> a)>a {
+    visibility: hidden;
+}
+.novel_bn:has(> a)>a.ready {
+    visibility: visible;
 }
