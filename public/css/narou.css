@@ -80,18 +80,41 @@
 }
 
 .novel_bn:has(> div) {
-    background-color: red;
-}
-
-.novel_bn:has(> a) {
-    background-color: #ccccff;
     display: flex;
     justify-content: space-between;
     flex-direction: row-reverse;
+}
+.novel_bn:has(> div)>div {
+    visibility: hidden;
+}
+.novel_bn:has(> div)>div.ready {
+    visibility: visible;
+}
+.novel_bn:has(> div):after {
+    display:none;
+}
+
+.novel_bn:has(> a) {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    padding-left: 2em;
+    padding-right: 2em;
 }
 .novel_bn:has(> a)>a {
     visibility: hidden;
 }
 .novel_bn:has(> a)>a.ready {
     visibility: visible;
+}
+#novel_no {
+    display: none;
+}
+
+#novel_color #novel_no.ready, .link-to-index {
+    margin: -16px auto 0 auto;
+    display: block;
+    width: 100px;
+    text-align: center;
+    font-size: 90%;
 }

@@ -1,6 +1,7 @@
 import $ from "jquery"
+import { jump, setupNovelReader } from "./NovelReader"
 
-const isMobile = () => $(".novel_bn>.link_prev").length > 0
+const isMobile = () => $(".novel_bn>div").length > 0
 
 const prepareHead = () => {
   $("head")
@@ -17,23 +18,88 @@ const prepareMain = (reader: JQuery) => {
   reader.append($("#novel_a")) // あとがき
 }
 
-const preparePager = () => {
-  if (isMobile()) {
-    console.log("mobile")
-  } else {
-    console.log("pc")
-  }
+const preparePagerForPc = () => {
+  $(".novel_bn").each((i, bn) => {
+    $("a", bn).each((_, a) => {
+      const text = a.innerHTML
+      if (text === "目次") {
+        if (i === 0) {
+          a.remove()
+        } else {
+          const ln = $('<div class="link-to-index"></div>')
+          ln.append(a)
+          a.className = "js_index-link"
+          $(bn).after(ln)
+        }
+      } else if (text.includes("前へ")) {
+        a.innerHTML = "前へ&nbsp;&gt;&gt;"
+        a.className = "ready js_prev-link"
+      } else if (text.includes("次へ")) {
+        a.innerHTML = "&lt;&lt;&nbsp;次へ"
+        a.className = "ready js_next-link"
+      }
+    })
+  })
+  $("#novel_no").addClass("ready")
+}
+
+const preparePagerForMobile = () => {
+  $(".novel_bn").each((i, bn) => {
+    $("div", bn).each((_, div) => {
+      const $a = $("a", div)
+      if ($a.length === 1) {
+        const text = $a.html()
+        console.log({ text }, $a[0])
+        if (text === "目次") {
+          if (i === 0) {
+            const no = $("#novel_no")
+            no.removeAttr("id")
+            $a.after(no)
+            $a.remove()
+          } else {
+            $a.addClass("js_index-link")
+          }
+        } else if (text.includes("前へ")) {
+          $a.html("前へ&nbsp;&gt;&gt;")
+          $a[0].className = "js_prev-link"
+        } else if (text.includes("次へ")) {
+          $a.html("&lt;&lt;&nbsp;次へ")
+          $a[0].className = "js_next-link"
+        }
+        $(div).addClass("ready")
+      }
+    })
+  })
 }
 
 prepareHead()
 
 $(() => {
-  console.log("start initialize")
   const reader = $("#novel_honbun")
   if (reader.length) {
     prepareMain(reader)
-    preparePager()
+    if (isMobile()) {
+      preparePagerForMobile()
+    } else {
+      preparePagerForPc()
+    }
+    setupNovelReader(reader, {
+      articleSelector: "#novel_honbun",
+      bookmark(): void {
+        $(".set_siori:eq(0)").trigger("click")
+      },
+      index(): void {
+        jump($(".js_index-link"))
+      },
+      myPage(): void {
+        jump($(".list_menu_novelview_after:eq(0)>a"))
+      },
+      next(): void {
+        jump($(".js_next-link"))
+      },
+      prev(): void {
+        jump($(".js_prev-link"))
+      }
+    })
   }
 })
-
-console.log("hello, narou.")

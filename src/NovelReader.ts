@@ -1,9 +1,11 @@
 import $ from "jquery"
 
 export const jump = (elem: JQuery) => {
-  const a = elem[0].tagName === "A" && (elem[0] as HTMLAnchorElement)
-  if (a) {
-    location.href = a.href
+  if (elem.length > 0) {
+    const a = elem[0].tagName === "A" && (elem[0] as HTMLAnchorElement)
+    if (a) {
+      location.href = a.href
+    }
   }
 }
 
@@ -137,7 +139,7 @@ const rotateParentheses = ($elem: JQuery) => {
   )
 }
 
-export const createNovelReader = (reader: JQuery, conf: NovelReaderConf) => {
+export const setupNovelReader = (reader: JQuery, conf: NovelReaderConf) => {
   const scroller = new Scroller(reader)
   mapKeyEvents(scroller, conf)
   makeScrollButtons(reader, scroller)
