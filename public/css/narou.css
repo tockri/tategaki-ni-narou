@@ -1,10 +1,10 @@
 #novel_honbun {
     font-family: "Noto Serif JP", serif !important;
     font-weight: 200 !important;
-    margin: 20px 0 !important;
-    padding: 0 100px !important;
+    margin: 0 !important;
+    padding: 20px 100px !important;
     width: 100% !important;
-    height: calc(100vh - 210px) !important;
+    height: calc(100vh - 180px) !important;
     overflow: scroll !important;
     writing-mode: vertical-rl !important;
     box-sizing: border-box !important;
