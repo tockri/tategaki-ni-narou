@@ -1,2 +1,6 @@
 dist/
 .DS_Store
+node_modules
+.yarn
+.idea/aws.xml
+/tategaki-ni-narou.zip
