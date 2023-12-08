@@ -2,32 +2,34 @@
   "name": "tategaki-ni-narou",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && NODE_ENV=production vite build ; cd dist ; zip ../tategaki-ni-narou.zip -r *",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
-    "jquery": "^3.7.0"
+    "jquery": "^3.7.1"
   },
   "devDependencies": {
-    "@crxjs/vite-plugin": "^1.0.14",
-    "@types/chrome": "^0.0.243",
-    "@types/jquery": "^3.5.17",
+    "@crxjs/vite-plugin": "^2.0.0-beta.21",
+    "@types/chrome": "^0.0.254",
+    "@types/jquery": "^3.5.29",
     "@types/prettier": "^3",
-    "@typescript-eslint/eslint-plugin": "^6.2.1",
-    "@typescript-eslint/parser": "^6.2.1",
-    "eslint": "^8.46.0",
-    "eslint-config-prettier": "^8.10.0",
-    "jsdom": "^22.1.0",
-    "prettier": "^3.0.1",
-    "prettier-plugin-organize-imports": "^3.2.3",
-    "typescript": "^5.0.2",
-    "vite": "^4.4.12",
-    "vitest": "^0.34.1"
+    "@typescript-eslint/eslint-plugin": "^6.13.2",
+    "@typescript-eslint/parser": "^6.13.2",
+    "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.1.0",
+    "jsdom": "^23.0.1",
+    "npm-check-updates": "^16.14.11",
+    "prettier": "^3.1.0",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.7",
+    "vitest": "^1.0.2"
   },
   "volta": {
-    "node": "20.3.1"
+    "node": "21.4.0"
   },
   "prettier": {
     "semi": false,
