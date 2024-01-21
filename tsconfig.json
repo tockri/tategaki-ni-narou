@@ -14,7 +14,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "types": ["node", "vitest/globals", "chrome"]
+    "types": ["node", "chrome"]
   },
   "include": ["src", "vite.config.ts"]
 }

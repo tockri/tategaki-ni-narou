@@ -1,7 +1,7 @@
 {
   "name": "tategaki-ni-narou",
   "private": true,
-  "version": "0.0.0",
+  "version": "2.0.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -13,20 +13,19 @@
   },
   "devDependencies": {
     "@crxjs/vite-plugin": "^2.0.0-beta.21",
-    "@types/chrome": "^0.0.254",
+    "@types/chrome": "^0.0.258",
     "@types/jquery": "^3.5.29",
     "@types/prettier": "^3",
-    "@typescript-eslint/eslint-plugin": "^6.13.2",
-    "@typescript-eslint/parser": "^6.13.2",
-    "eslint": "^8.55.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
-    "jsdom": "^23.0.1",
-    "npm-check-updates": "^16.14.11",
-    "prettier": "^3.1.0",
+    "jsdom": "^24.0.0",
+    "npm-check-updates": "^16.14.12",
+    "prettier": "^3.2.4",
     "prettier-plugin-organize-imports": "^3.2.4",
     "typescript": "^5.3.3",
-    "vite": "^5.0.12",
-    "vitest": "^1.0.2"
+    "vite": "^5.0.12"
   },
   "volta": {
     "node": "21.4.0"

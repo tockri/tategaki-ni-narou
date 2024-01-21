@@ -62,6 +62,9 @@ const mapKeyEvents = (scroller: Scroller, conf: NovelReaderConf) => {
     ArrowLeft: (e) => (e.shiftKey ? scroller.pageDown(0.5) : scroller.scrollLeftBy(200)),
     ArrowRight: (e) => (e.shiftKey ? scroller.pageUp(0.5) : scroller.scrollLeftBy(-200)),
     b: conf.bookmark,
+    h: () => {
+      $("body").toggleClass("tategaki-ni-narou-help-open")
+    },
     n: conf.next,
     m: conf.myPage,
     p: conf.prev,
@@ -80,7 +83,12 @@ const mapKeyEvents = (scroller: Scroller, conf: NovelReaderConf) => {
 }
 
 const makeScrollButtons = (reader: JQuery, scroller: Scroller) => {
-  reader.before('<div class="tategaki-left"></div><div class="tategaki-right"></div>')
+  reader.before(`<div class="tategaki-left">
+    <div class="help">左へスクロール</div>
+  </div>
+  <div class="tategaki-right">
+    <div class="help">右へスクロール</div>
+  </div>`)
   $(document).on("click", (e) => {
     const cls = (e.target as unknown as HTMLElement).className
     if (cls === "tategaki-left") {

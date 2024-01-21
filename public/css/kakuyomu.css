@@ -1,57 +1,58 @@
 .widget-episode-inner {
-    width: 100% !important;
-    max-width: 100% !important;
+  width: 100% !important;
+  max-width: 100% !important;
 }
 .widget-episodeBody {
-    font-family: "Source Han Serif JP", "Noto Serif CJK JP", "Hiragino Mincho", serif !important;
-    font-weight: 200 !important;
-    writing-mode: vertical-rl !important;
-    height: calc(100vh - 130px) !important;
-    width: 100% !important;
-    overflow-x: scroll !important;
-    padding: 20px 0 !important;
-    box-sizing: border-box;
+  font-family: "Source Han Serif JP", "Noto Serif CJK JP", "Hiragino Mincho", serif !important;
+  font-weight: 200 !important;
+  writing-mode: vertical-rl !important;
+  height: calc(100vh - 130px) !important;
+  width: 100% !important;
+  overflow-x: scroll !important;
+  padding: 20px 0 !important;
+  box-sizing: border-box;
 }
-.widget-episodeBody .emphasisDots>span {
-    padding: 0 0.4em;
-    background-position: right center;
+.widget-episodeBody .emphasisDots > span {
+  padding: 0 0.4em;
+  background-position: right center;
 }
 #contentMain-inner {
-    padding: 0 !important;
+  padding: 0 !important;
 }
 #contentMain-header {
-    display: none;
+  display: none;
 }
 #page-works-episodes-episode.writingDirection-horizontal .widget-episodeBody #contentMain-header {
-    display: block;
+  display: block;
 }
 #page-works-episodes-episode.writingDirection-horizontal .widget-episodeBody #contentMain-header .widget-episodeTitle {
-    margin: 0;
-    padding: 0 20px;
+  margin: 0;
+  padding: 0 20px;
 }
 #page-works-episodes-episode.writingDirection-horizontal #contentMain-header .chapterTitle.level2:before {
-    border-top: 0 !important;
-    border-right: 1px solid #abadad !important;
-    top: 0 !important;
-    left: 53px !important;
-    width: 0 !important;
-    height: 100% !important;
+  border-top: 0 !important;
+  border-right: 1px solid #abadad !important;
+  top: 0 !important;
+  left: 53px !important;
+  width: 0 !important;
+  height: 100% !important;
+}
+.tategaki-left,
+.tategaki-right {
+  position: absolute;
+  height: calc(100vh - 210px);
+  width: 15%;
+  background-color: transparent;
+  border: 0 none;
+  z-index: 2;
 }
 .tategaki-left {
-    position: absolute;
-    height: calc(100vh - 210px);
-    left: 0;
-    width: 15%;
-    background-color: transparent;
-    border: 0 none;
-    z-index: 2;
+  left: 0;
 }
 .tategaki-right {
-    position: absolute;
-    height: calc(100vh - 210px);
-    right: 0;
-    width: 15%;
-    background-color: transparent;
-    border: 0 none;
-    z-index: 2;
+  right: 0;
+}
+.tategaki-left .help,
+.tategaki-right .help {
+  display: none;
 }

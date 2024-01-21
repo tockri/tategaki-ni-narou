@@ -72,6 +72,78 @@ const preparePagerForMobile = () => {
   })
 }
 
+const prepareHelpButtonForPc = () => {
+  const base = $("#novelnavi_right")
+  const label = localStorage.getItem("tategaki-ni-narou-hide-icon-label")
+    ? ""
+    : `<span class="icon-label">縦書きになろうヘルプ</span>`
+  const button = $(
+    `<button class="tategaki-ni-narou-icon">${label}<img src="${chrome.runtime.getURL("icons/icon-48.png")}"></button>`
+  )
+  button.on("click", () => {
+    $("body").toggleClass("tategaki-ni-narou-help-open")
+    localStorage.setItem("tategaki-ni-narou-hide-icon-label", "1")
+    $(".tategaki-ni-narou-icon .icon-label").remove()
+  })
+  base.prepend(button)
+  const help = $(`<div class="tategaki-ni-narou-help">
+  <div class="content">
+    <h1>縦書きになろう 使い方</h1>
+    <h2>キーボード操作</h2>
+    <table>
+      <tbody>
+        <tr>
+          <th>n</th>
+          <td>次の話</th>
+          <th>Space</th>
+          <td>1ページ分左にスクロール</th>
+        </tr>
+        <tr>
+          <th>p</th>
+          <td>前の話</th>
+          <th>Shift+Space</th>
+          <td>1ページ分右にスクロール</th>
+        </tr>
+        <tr>
+          <th>l</th>
+          <td>作品目次に移動</th>
+          <th>z , Shift+←</th>
+          <td>ページ半分左にスクロール</th>
+        </tr>
+        <tr>
+          <th>m</th>
+          <td>マイページに移動</th>
+          <th>x , Shift+→</th>
+          <td>ページ半分右にスクロール</th>
+        </tr>
+        <tr>
+          <th>b</th>
+          <td>しおりをつける</th>
+          <th>Home</th>
+          <td>一番左までスクロール</td>
+        </tr>
+        <tr>
+          <th>←</th>
+          <td>左にスクロール</td>
+          <th>End</th>
+          <td>一番右までスクロール</td>
+        </tr>
+        <tr>
+          <th>→</th>
+          <td>右にスクロール</td>
+          <th>h</th>
+          <td>このヘルプを表示する</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>`)
+  help.on("click", () => {
+    $("body").removeClass("tategaki-ni-narou-help-open")
+  })
+  $("body").append(help)
+}
+
 prepareHead()
 
 $(() => {
@@ -81,6 +153,7 @@ $(() => {
     if (isMobile()) {
       preparePagerForMobile()
     } else {
+      prepareHelpButtonForPc()
       preparePagerForPc()
     }
     setupNovelReader(reader, {
