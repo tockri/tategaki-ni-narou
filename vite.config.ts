@@ -4,7 +4,7 @@ import { defineConfig } from "vite"
 const manifest = defineManifest({
   manifest_version: 3,
   name: "縦書きになろう",
-  version: "2.0.2",
+  version: "2.0.3",
   description: "「小説家になろう」と「カクヨム」を縦書きで読みやすくします。",
   icons: {
     "16": "icons/icon-16.png",
@@ -35,7 +35,8 @@ const manifest = defineManifest({
       resources: ["icons/icon-48.png"],
       matches: ["<all_urls>"]
     }
-  ]
+  ],
+  permissions: ["storage"]
 })
 
 export default defineConfig({

@@ -165,8 +165,8 @@
 .tategaki-ni-narou-help-open .tategaki-ni-narou-help .content {
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
-  padding: 10vh;
-  width: 60%;
+  padding: 2em;
+  width: 65%;
   box-sizing: border-box;
 }
 .tategaki-ni-narou-help-open .tategaki-left .help,

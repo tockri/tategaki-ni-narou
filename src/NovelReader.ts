@@ -15,6 +15,7 @@ export type NovelReaderConf = {
   bookmark: () => void
   myPage: () => void
   index: () => void
+  help: () => void
   articleSelector: string
 }
 
@@ -62,9 +63,7 @@ const mapKeyEvents = (scroller: Scroller, conf: NovelReaderConf) => {
     ArrowLeft: (e) => (e.shiftKey ? scroller.pageDown(0.5) : scroller.scrollLeftBy(200)),
     ArrowRight: (e) => (e.shiftKey ? scroller.pageUp(0.5) : scroller.scrollLeftBy(-200)),
     b: conf.bookmark,
-    h: () => {
-      $("body").toggleClass("tategaki-ni-narou-help-open")
-    },
+    h: conf.help,
     n: conf.next,
     m: conf.myPage,
     p: conf.prev,

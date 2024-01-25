@@ -72,52 +72,70 @@ const preparePagerForMobile = () => {
   })
 }
 
-const prepareHelpButtonForPc = () => {
+const STORAGE_KEY_HIDE_ICON_LABEL = "tategaki-ni-narou-hide-icon-label"
+
+const markHideIconInStorage = async () => {
+  await chrome.storage.sync.set({ [STORAGE_KEY_HIDE_ICON_LABEL]: 1 })
+}
+
+const isMarkedHideIconInStorage = async () => {
+  return (await chrome.storage.sync.get(STORAGE_KEY_HIDE_ICON_LABEL))[STORAGE_KEY_HIDE_ICON_LABEL]
+}
+
+const toggleHelpOpen = async () => {
+  $("body").toggleClass("tategaki-ni-narou-help-open")
+  $(".tategaki-ni-narou-icon .icon-label").remove()
+  await markHideIconInStorage()
+}
+
+const cleanupLocalStorage = async () => {
+  if (localStorage.getItem(STORAGE_KEY_HIDE_ICON_LABEL)) {
+    localStorage.removeItem(STORAGE_KEY_HIDE_ICON_LABEL)
+    await markHideIconInStorage()
+  }
+}
+cleanupLocalStorage().then()
+
+const prepareHelpButtonForPc = async () => {
   const base = $("#novelnavi_right")
-  const label = localStorage.getItem("tategaki-ni-narou-hide-icon-label")
-    ? ""
-    : `<span class="icon-label">縦書きになろうヘルプ</span>`
+  const label = (await isMarkedHideIconInStorage()) ? "" : `<span class="icon-label">縦書きになろうヘルプ</span>`
+  console.log({ label: await chrome.storage.sync.get("tategaki-ni-narou-hide-icon-label") })
   const button = $(
     `<button class="tategaki-ni-narou-icon">${label}<img src="${chrome.runtime.getURL("icons/icon-48.png")}"></button>`
   )
-  button.on("click", () => {
-    $("body").toggleClass("tategaki-ni-narou-help-open")
-    localStorage.setItem("tategaki-ni-narou-hide-icon-label", "1")
-    $(".tategaki-ni-narou-icon .icon-label").remove()
-  })
+  button.on("click", toggleHelpOpen)
   base.prepend(button)
   const help = $(`<div class="tategaki-ni-narou-help">
   <div class="content">
-    <h1>縦書きになろう 使い方</h1>
-    <h2>キーボード操作</h2>
+    <h1>縦書きになろう キーボード操作</h1>
     <table>
       <tbody>
         <tr>
-          <th>n</th>
+          <th>N</th>
           <td>次の話</th>
           <th>Space</th>
           <td>1ページ分左にスクロール</th>
         </tr>
         <tr>
-          <th>p</th>
+          <th>P</th>
           <td>前の話</th>
           <th>Shift+Space</th>
           <td>1ページ分右にスクロール</th>
         </tr>
         <tr>
-          <th>l</th>
+          <th>L</th>
           <td>作品目次に移動</th>
-          <th>z , Shift+←</th>
+          <th>Z , Shift+←</th>
           <td>ページ半分左にスクロール</th>
         </tr>
         <tr>
-          <th>m</th>
+          <th>M</th>
           <td>マイページに移動</th>
-          <th>x , Shift+→</th>
+          <th>X , Shift+→</th>
           <td>ページ半分右にスクロール</th>
         </tr>
         <tr>
-          <th>b</th>
+          <th>B</th>
           <td>しおりをつける</th>
           <th>Home</th>
           <td>一番左までスクロール</td>
@@ -131,16 +149,14 @@ const prepareHelpButtonForPc = () => {
         <tr>
           <th>→</th>
           <td>右にスクロール</td>
-          <th>h</th>
-          <td>このヘルプを表示する</th>
+          <th>H</th>
+          <td>このヘルプを表示/非表示する</th>
         </tr>
       </tbody>
     </table>
   </div>
 </div>`)
-  help.on("click", () => {
-    $("body").removeClass("tategaki-ni-narou-help-open")
-  })
+  help.on("click", toggleHelpOpen)
   $("body").append(help)
 }
 
@@ -153,7 +169,7 @@ $(() => {
     if (isMobile()) {
       preparePagerForMobile()
     } else {
-      prepareHelpButtonForPc()
+      prepareHelpButtonForPc().then()
       preparePagerForPc()
     }
     setupNovelReader(reader, {
@@ -172,7 +188,8 @@ $(() => {
       },
       prev(): void {
         jump($(".js_prev-link"))
-      }
+      },
+      help: toggleHelpOpen
     })
   }
 })
