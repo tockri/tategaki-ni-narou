@@ -75,11 +75,19 @@ const preparePagerForMobile = () => {
 const STORAGE_KEY_HIDE_ICON_LABEL = "tategaki-ni-narou-hide-icon-label"
 
 const markHideIconInStorage = async () => {
-  await chrome.storage.sync.set({ [STORAGE_KEY_HIDE_ICON_LABEL]: 1 })
+  try {
+    await chrome.storage.sync.set({ [STORAGE_KEY_HIDE_ICON_LABEL]: 1 })
+  } catch (e) {
+    localStorage.setItem(STORAGE_KEY_HIDE_ICON_LABEL, "1")
+  }
 }
 
 const isMarkedHideIconInStorage = async () => {
-  return (await chrome.storage.sync.get(STORAGE_KEY_HIDE_ICON_LABEL))[STORAGE_KEY_HIDE_ICON_LABEL]
+  try {
+    return (await chrome.storage.sync.get(STORAGE_KEY_HIDE_ICON_LABEL))[STORAGE_KEY_HIDE_ICON_LABEL]
+  } catch (e) {
+    return localStorage.getItem(STORAGE_KEY_HIDE_ICON_LABEL)
+  }
 }
 
 const toggleHelpOpen = async () => {

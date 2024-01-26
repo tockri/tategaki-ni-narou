@@ -23,7 +23,8 @@ $(() => {
       },
       prev: () => {
         jump($("#contentMain-previousEpisode>a"))
-      }
+      },
+      help: () => {}
     })
   }
 })
