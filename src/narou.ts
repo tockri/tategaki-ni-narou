@@ -1,5 +1,6 @@
 import $ from "jquery"
 import { jump, setupNovelReader } from "./NovelReader"
+import { Config } from "./Config"
 
 const isMobile = () => $(".novel_bn>div").length > 0
 
@@ -72,50 +73,54 @@ const preparePagerForMobile = () => {
   })
 }
 
-const STORAGE_KEY_HIDE_ICON_LABEL = "tategaki-ni-narou-hide-icon-label"
-
-const markHideIconInStorage = async () => {
-  try {
-    await chrome.storage.sync.set({ [STORAGE_KEY_HIDE_ICON_LABEL]: 1 })
-  } catch (e) {
-    localStorage.setItem(STORAGE_KEY_HIDE_ICON_LABEL, "1")
-  }
-}
-
-const isMarkedHideIconInStorage = async () => {
-  try {
-    return (await chrome.storage.sync.get(STORAGE_KEY_HIDE_ICON_LABEL))[STORAGE_KEY_HIDE_ICON_LABEL]
-  } catch (e) {
-    return localStorage.getItem(STORAGE_KEY_HIDE_ICON_LABEL)
-  }
-}
+const config = new Config()
 
 const toggleHelpOpen = async () => {
   $("body").toggleClass("tategaki-ni-narou-help-open")
   $(".tategaki-ni-narou-icon .icon-label").remove()
-  await markHideIconInStorage()
+  config.hideHelpLabel()
 }
 
-const cleanupLocalStorage = async () => {
-  if (localStorage.getItem(STORAGE_KEY_HIDE_ICON_LABEL)) {
-    localStorage.removeItem(STORAGE_KEY_HIDE_ICON_LABEL)
-    await markHideIconInStorage()
+const setBodyClass = () => {
+  if (config.useSerifOnNarou) {
+    $("body").addClass("tategaki-ni-narou-serif").removeClass("tategaki-ni-narou-sanserif")
+  } else {
+    $("body").addClass("tategaki-ni-narou-sanserif").removeClass("tategaki-ni-narou-serif")
   }
 }
-cleanupLocalStorage().then()
+setBodyClass()
 
-const prepareHelpButtonForPc = async () => {
+const prepareHelpButtonForPc = () => {
   const base = $("#novelnavi_right")
-  const label = (await isMarkedHideIconInStorage()) ? "" : `<span class="icon-label">縦書きになろうヘルプ</span>`
-  console.log({ label: await chrome.storage.sync.get("tategaki-ni-narou-hide-icon-label") })
+  const label = config.isHelpLabelVisible ? `<span class="icon-label">縦書きになろうヘルプ・設定</span>` : ""
+
   const button = $(
-    `<button class="tategaki-ni-narou-icon">${label}<img src="${chrome.runtime.getURL("icons/icon-48.png")}"></button>`
+    `<button class="tategaki-ni-narou-icon" title="縦書きになろうヘルプ・設定">${label}<img src="${chrome.runtime.getURL("icons/icon-48.png")}"></button>`
   )
   button.on("click", toggleHelpOpen)
   base.prepend(button)
   const help = $(`<div class="tategaki-ni-narou-help">
   <div class="content">
-    <h1>縦書きになろう キーボード操作</h1>
+    <h1>縦書きになろう</h1>
+    <h2>設定</h2>
+    <table>
+      <tbody>
+        <tr>
+          <th>フォント</th>
+          <td>
+            <label class="tategaki-ni-narou-form-radio">
+              <input class="tategaki-ni-narou-serif" type="radio" name="font" value="serif">
+              明朝体
+            </label>
+            <label class="tategaki-ni-narou-form-radio">
+              <input class="tategaki-ni-narou-sanserif" type="radio" name="font" value="sanserif">
+              ゴシック体
+            </label>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>キーボード操作</h2>
     <table>
       <tbody>
         <tr>
@@ -164,6 +169,23 @@ const prepareHelpButtonForPc = async () => {
     </table>
   </div>
 </div>`)
+  const sanserif = $(".tategaki-ni-narou-sanserif", help)
+  const serif = $(".tategaki-ni-narou-serif", help)
+  if (config.useSerifOnNarou) {
+    serif.prop("checked", true)
+    sanserif.prop("checked", false)
+  } else {
+    serif.prop("checked", false)
+    sanserif.prop("checked", true)
+  }
+  sanserif.on("change", () => {
+    config.setSerifOnNarou(false)
+    setBodyClass()
+  })
+  serif.on("change", () => {
+    config.setSerifOnNarou(true)
+    setBodyClass()
+  })
   help.on("click", toggleHelpOpen)
   $("body").append(help)
 }
@@ -177,7 +199,7 @@ $(() => {
     if (isMobile()) {
       preparePagerForMobile()
     } else {
-      prepareHelpButtonForPc().then()
+      prepareHelpButtonForPc()
       preparePagerForPc()
     }
     setupNovelReader(reader, {

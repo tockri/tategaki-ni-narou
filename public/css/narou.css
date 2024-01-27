@@ -1,5 +1,4 @@
 #novel_honbun {
-  font-family: "Noto Serif JP", serif !important;
   font-weight: 200 !important;
   margin: 0 !important;
   padding: 20px 100px !important;
@@ -8,7 +7,18 @@
   overflow: scroll !important;
   writing-mode: vertical-rl !important;
   box-sizing: border-box !important;
+  opacity: 0%;
+  transition: opacity 0.5s ease-in-out;
 }
+
+.tategaki-ni-narou-serif #novel_honbun {
+  font-family: "Noto Serif JP", serif !important;
+  opacity: 100%;
+}
+.tategaki-ni-narou-sanserif #novel_honbun {
+  opacity: 100%;
+}
+
 #novel_p,
 .novel_subtitle {
   display: none;
@@ -172,6 +182,9 @@
 .tategaki-ni-narou-help-open .tategaki-left .help,
 .tategaki-ni-narou-help-open .tategaki-right .help {
   display: block;
+}
+.tategaki-ni-narou-help-open .tategaki-ni-narou-help .content table {
+  margin-bottom: 2em;
 }
 .tategaki-ni-narou-help-open .tategaki-ni-narou-help .content td,
 .tategaki-ni-narou-help-open .tategaki-ni-narou-help .content th {
