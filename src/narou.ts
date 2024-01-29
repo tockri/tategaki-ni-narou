@@ -82,10 +82,14 @@ const toggleHelpOpen = async () => {
 }
 
 const setBodyClass = () => {
-  if (config.useSerifOnNarou) {
-    $("body").addClass("tategaki-ni-narou-serif").removeClass("tategaki-ni-narou-sanserif")
+  if ($("body").length > 0) {
+    if (config.useSerifOnNarou) {
+      $("body").addClass("tategaki-ni-narou-serif").removeClass("tategaki-ni-narou-sanserif")
+    } else {
+      $("body").addClass("tategaki-ni-narou-sanserif").removeClass("tategaki-ni-narou-serif")
+    }
   } else {
-    $("body").addClass("tategaki-ni-narou-sanserif").removeClass("tategaki-ni-narou-serif")
+    setTimeout(setBodyClass, 50)
   }
 }
 setBodyClass()
