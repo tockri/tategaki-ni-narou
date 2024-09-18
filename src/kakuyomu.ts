@@ -9,9 +9,6 @@ $(() => {
     reader.prepend($("#contentMain-header"))
     setupNovelReader(reader, {
       articleSelector: ".widget-episodeBody",
-      bookmark: () => {
-        return
-      },
       index: () => {
         jump($("#worksEpisodesEpisodeHeader-breadcrumbs a:first-child"))
       },

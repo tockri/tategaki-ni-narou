@@ -1,4 +1,11 @@
-#novel_honbun {
+/*
+ * Reader
+ */
+.l-container:has(.p-novelgood-form) main.l-main {
+  width: 100vw !important;
+  margin: 0 !important;
+}
+.l-container:has(.p-novelgood-form) article.p-novel {
   font-weight: 200 !important;
   margin: 0 !important;
   padding: 20px 100px !important;
@@ -11,66 +18,77 @@
   transition: opacity 0.2s ease-in-out;
 }
 
-.tategaki-ni-narou-serif #novel_honbun {
+/* 明朝体 */
+.tategaki-ni-narou-serif:has(.p-novelgood-form) article.p-novel {
   font-family: "Noto Serif JP", serif !important;
   opacity: 100%;
 }
-.tategaki-ni-narou-sanserif #novel_honbun {
+
+/* フォント変更しない */
+.tategaki-ni-narou-sanserif:has(.p-novelgood-form) article.p-novel {
   opacity: 100%;
 }
 
-#novel_p,
-.novel_subtitle {
+/* まえがき */
+.l-container:has(.p-novelgood-form) .p-novel__text--preface {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  padding-left: 30px;
+  border-bottom: 0 none;
+  border-left: 3px double var(--color-ui-border--emphasis);
+}
+
+/* あとがき */
+.l-container:has(.p-novelgood-form) .p-novel__text--afterword {
+  margin-top: 0;
+  padding-top: 0;
+  padding-right: 30px;
+  border-top: 0 none;
+  border-right: 3px double var(--color-ui-border--emphasis);
+}
+/* ページャ移動前 */
+.l-container:has(.p-novelgood-form) article.p-novel .c-pager--center,
+.l-container:has(.p-novelgood-form) article.p-novel .p-novel__number {
   display: none;
 }
-.contents1 {
-  position: relative !important;
-  margin: 0 !important;
-  top: -6px !important;
-  min-height: 60px !important;
-  width: 100% !important;
-  padding: 5px 20px !important;
-  text-align: left !important;
-  box-sizing: border-box !important;
+/* ページャ移動後 */
+.l-container:has(.p-novelgood-form) .c-pager--center {
+  margin: 0;
+  gap: 60px;
 }
-#novel_honbun .novel_subtitle {
+.l-container:has(.p-novelgood-form) .c-pager--center .tnn_next-link {
+  order: 1;
+}
+.l-container:has(.p-novelgood-form) .c-pager--center .tnn_prev-link {
+  order: 3;
+}
+.l-container:has(.p-novelgood-form) .c-pager--center .tnn_index-link {
+  order: 2;
+}
+.l-container:has(.p-novelgood-form) .c-pager--center .p-novel__number {
+  margin: 0;
+  order: 2;
+}
+.l-container:has(.p-novelgood-form) .c-pager--box .tnn_next-link-box {
+  order: 1;
+}
+.l-container:has(.p-novelgood-form) .c-pager--box .tnn_prev-link-box {
+  order: 3;
+}
+.l-container:has(.p-novelgood-form) .c-pager--box .tnn_index-link-box {
+  order: 2;
+}
+.l-container:has(.p-novelgood-form) .c-pager--box .p-novel__number {
+  order: 2;
   display: block;
-  margin: 0 10px;
-  font-size: 150%;
+  margin: 0;
+  padding-top: 9px;
+  text-align: center;
 }
-#novel_honbun #novel_p {
-  display: block;
-  margin: 0 20px;
-  padding: 20px;
-  width: auto;
-  border-bottom: none;
-  border-left: 3px double #999999;
-  font-size: 100% !important;
-}
-#novel_honbun #novel_a {
-  display: block;
-  margin: 0 20px;
-  padding: 20px;
-  width: auto;
-  border-top: none;
-  border-right: 3px double #999999;
-  font-size: 100% !important;
-}
-#novel_contents {
-  width: auto !important;
-  line-height: 1 !important;
-  position: static !important;
-}
-#novel_color {
-  width: 100% !important;
-  margin: 0 !important;
-}
-.tnn-pager {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 2em;
-  font-size: 80%;
-}
+
+/*
+ * タップスクロール領域
+ */
 .tategaki-left,
 .tategaki-right {
   position: absolute;
@@ -95,6 +113,7 @@
   display: none;
 }
 
+/* 
 .novel_bn:has(> div) {
   display: flex;
   justify-content: space-between;
@@ -134,8 +153,11 @@
   width: 100px;
   text-align: center;
   font-size: 90%;
-}
+} */
 
+/*
+ * 縦書きになろうアイコン
+ */
 .tategaki-ni-narou-icon {
   position: absolute;
   border: 0 none;
@@ -154,6 +176,9 @@
   color: #33aa66;
 }
 
+/*
+ * 縦書きになろうヘルプ
+ */
 .tategaki-ni-narou-help {
   display: none;
 }

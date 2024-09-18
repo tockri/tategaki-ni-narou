@@ -12,7 +12,6 @@ export const jump = (elem: JQuery) => {
 export type NovelReaderConf = {
   prev: () => void
   next: () => void
-  bookmark: () => void
   myPage: () => void
   index: () => void
   help: () => void
@@ -62,7 +61,6 @@ const mapKeyEvents = (scroller: Scroller, conf: NovelReaderConf) => {
     Home: () => scroller.scrollLeftBy(99999),
     ArrowLeft: (e) => (e.shiftKey ? scroller.pageDown(0.5) : scroller.scrollLeftBy(200)),
     ArrowRight: (e) => (e.shiftKey ? scroller.pageUp(0.5) : scroller.scrollLeftBy(-200)),
-    b: conf.bookmark,
     h: conf.help,
     n: conf.next,
     m: conf.myPage,
