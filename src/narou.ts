@@ -10,13 +10,11 @@ const isMobile = () => $(".c-menu__body>.c-menu__first").length > 0
 
 const config = new Config()
 
-Body.setBodyClass(config)
-
-Head.prepare()
-
 $(() => {
   const reader = $(".l-container:has(.p-novelgood-form) article.p-novel")
   if (reader.length) {
+    Body.setBodyClass(config)
+    Head.prepare()
     if (isMobile()) {
       Pager.prepareForMobile(reader)
     } else {
