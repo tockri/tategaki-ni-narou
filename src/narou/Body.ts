@@ -9,7 +9,7 @@ const setBodyClass = (config: Config) => {
       $("body").addClass("tategaki-ni-narou-sanserif").removeClass("tategaki-ni-narou-serif")
     }
   } else {
-    setTimeout(setBodyClass, 50)
+    setTimeout(() => setBodyClass(config), 50)
   }
 }
 

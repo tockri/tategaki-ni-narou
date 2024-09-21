@@ -37,7 +37,5 @@ $(() => {
       },
       help: () => HelpButton.toggleHelpOpen(config)
     })
-  } else {
-    console.warn("Element article.p-novel not found")
   }
 })
