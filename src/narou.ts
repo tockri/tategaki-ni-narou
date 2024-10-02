@@ -18,7 +18,17 @@ $(() => {
     if (isMobile()) {
       Pager.prepareForMobile(reader)
     } else {
-      HelpButton.prepareHelpButtonForPc(config)
+      HelpButton.prepareHelpButtonForPc({
+        showHelpLabel: config.isHelpLabelVisible,
+        useSerifFont: config.useSerifOnNarou,
+        onFontChanged: (font) => {
+          config.setSerifOnNarou(font === "serif")
+          Body.setBodyClass(config)
+        },
+        onHelpClosed: () => {
+          config.hideHelpLabel()
+        }
+      })
       Pager.prepareForPc(reader)
     }
     setupNovelReader(reader, {
@@ -27,7 +37,7 @@ $(() => {
         jump($(".tnn_index-link"))
       },
       myPage(): void {
-        jump($(".list_menu_novelview_after:eq(0)>a"))
+        jump($("a.c-menu__item:contains(ブックマーク)"))
       },
       next(): void {
         jump($(".tnn_next-link"))
@@ -35,7 +45,7 @@ $(() => {
       prev(): void {
         jump($(".tnn_prev-link"))
       },
-      help: () => HelpButton.toggleHelpOpen(config)
+      help: HelpButton.show
     })
   }
 })

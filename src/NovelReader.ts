@@ -98,50 +98,48 @@ const makeScrollButtons = (reader: JQuery, scroller: Scroller) => {
 
 const rotateParentheses = ($elem: JQuery) => {
   const html = $elem.html()
-  $elem.html(
-    html.replace(/[（）｛｝〔〕【】《》〈〉「」『』［］]/g, (m) => {
-      switch (m) {
-        case "（":
-          return "︵"
-        case "）":
-          return "︶"
-        case "｛":
-          return "︷"
-        case "｝":
-          return "︸"
-        case "〔":
-          return "︹"
-        case "〕":
-          return "︺"
-        case "【":
-          return "︻"
-        case "】":
-          return "︼"
-        case "《":
-          return "︽"
-        case "》":
-          return "︾"
-        case "〈":
-          return "︿"
-        case "〉":
-          return "﹀"
-        case "「":
-          return "﹁"
-        case "」":
-          return "﹂"
-        case "『":
-          return "﹃"
-        case "』":
-          return "﹄"
-        case "［":
-          return "﹇"
-        case "］":
-          return "﹈"
-        default:
-          return m
-      }
-    })
-  )
+  $elem[0].innerHTML = html.replace(/[（）｛｝〔〕【】《》〈〉「」『』［］]/g, (m) => {
+    switch (m) {
+      case "（":
+        return "︵"
+      case "）":
+        return "︶"
+      case "｛":
+        return "︷"
+      case "｝":
+        return "︸"
+      case "〔":
+        return "︹"
+      case "〕":
+        return "︺"
+      case "【":
+        return "︻"
+      case "】":
+        return "︼"
+      case "《":
+        return "︽"
+      case "》":
+        return "︾"
+      case "〈":
+        return "︿"
+      case "〉":
+        return "﹀"
+      case "「":
+        return "﹁"
+      case "」":
+        return "﹂"
+      case "『":
+        return "﹃"
+      case "』":
+        return "﹄"
+      case "［":
+        return "﹇"
+      case "］":
+        return "﹈"
+      default:
+        return m
+    }
+  })
 }
 
 export const setupNovelReader = (reader: JQuery, conf: NovelReaderConf) => {

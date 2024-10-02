@@ -1,25 +1,31 @@
 import $ from "jquery"
-import { Config } from "../Config"
-import { Body } from "./Body"
 
-const toggleHelpOpen = (config: Config) => {
-  $("body").toggleClass("tategaki-ni-narou-help-open")
-  $(".tategaki-ni-narou-icon .icon-label").remove()
-  config.hideHelpLabel()
+const show = () => {
+  $("body").addClass("tategaki-ni-narou-help-open")
 }
 
-const prepareHelpButtonForPc = (config: Config) => {
-  const toggleHelp = () => toggleHelpOpen(config)
+const hide = () => {
+  $("body").removeClass("tategaki-ni-narou-help-open")
+  $(".tategaki-ni-narou-icon .icon-label").remove()
+}
 
+interface HelpButtonOption {
+  showHelpLabel: boolean
+  useSerifFont: boolean
+  onHelpClosed(): void
+  onFontChanged(font: "serif" | "sanserif"): void
+}
+
+const prepareHelpButtonForPc = (option: HelpButtonOption) => {
   const base = $(".c-menu__body")
-  const label = config.isHelpLabelVisible ? `<span class="icon-label">縦書きになろうヘルプ・設定</span>` : ""
+  const label = option.showHelpLabel ? `<span class="icon-label">縦書きになろうヘルプ・設定</span>` : ""
 
   const button = $(
     `<button class="tategaki-ni-narou-icon" title="縦書きになろうヘルプ・設定">${label}<img src="${chrome.runtime.getURL("icons/icon-48.png")}"></button>`
   )
-  button.on("click", toggleHelp)
+  button.on("click", show)
   base.append(button)
-  const help = $(`<div class="tategaki-ni-narou-help">
+  const helpPane = $(`<div class="tategaki-ni-narou-help">
     <div class="content">
       <h1>縦書きになろう</h1>
       <h2>設定</h2>
@@ -83,9 +89,9 @@ const prepareHelpButtonForPc = (config: Config) => {
       </table>
     </div>
   </div>`)
-  const sanserif = $(".tategaki-ni-narou-sanserif", help)
-  const serif = $(".tategaki-ni-narou-serif", help)
-  if (config.useSerifOnNarou) {
+  const sanserif = $(".tategaki-ni-narou-sanserif", helpPane)
+  const serif = $(".tategaki-ni-narou-serif", helpPane)
+  if (option.useSerifFont) {
     serif.prop("checked", true)
     sanserif.prop("checked", false)
   } else {
@@ -93,18 +99,16 @@ const prepareHelpButtonForPc = (config: Config) => {
     sanserif.prop("checked", true)
   }
   sanserif.on("change", () => {
-    config.setSerifOnNarou(false)
-    Body.setBodyClass(config)
+    option.onFontChanged("sanserif")
   })
   serif.on("change", () => {
-    config.setSerifOnNarou(true)
-    Body.setBodyClass(config)
+    option.onFontChanged("serif")
   })
-  help.on("click", toggleHelp)
-  $("body").append(help)
+  helpPane.on("click", hide)
+  $("body").append(helpPane)
 }
 
 export const HelpButton = {
   prepareHelpButtonForPc,
-  toggleHelpOpen
+  show
 }
