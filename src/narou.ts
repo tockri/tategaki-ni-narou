@@ -10,6 +10,17 @@ const isMobile = () => $(".c-menu__body>.c-menu__first").length > 0
 
 const config = new Config()
 
+const setScrollbarWidth = () => {
+  const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+  // カスタムプロパティの値を更新する
+  document.documentElement.style.setProperty("--scrollbar", `${scrollbarWidth}px`)
+}
+
+// 表示されたとき
+window.addEventListener("load", setScrollbarWidth)
+// リサイズしたとき
+window.addEventListener("resize", setScrollbarWidth)
+
 $(() => {
   const reader = $(".l-container:has(.p-novelgood-form) article.p-novel")
   if (reader.length) {

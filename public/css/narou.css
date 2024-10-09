@@ -1,8 +1,11 @@
+:root {
+  --scrollBarWidth: 0;
+}
 /*
  * Reader
  */
 .l-container:has(.p-novelgood-form) main.l-main {
-  width: 100vw !important;
+  width: calc(100vw - var(--scrollBarWidth)) !important;
   margin: 0 !important;
 }
 .l-container:has(.p-novelgood-form) article.p-novel {
@@ -11,7 +14,8 @@
   padding: 20px 100px !important;
   width: 100% !important;
   height: calc(100vh - 180px) !important;
-  overflow: scroll !important;
+  overflow-x: scroll !important;
+  overflow-y: hidden !important;
   writing-mode: vertical-rl !important;
   box-sizing: border-box !important;
   opacity: 0%;
