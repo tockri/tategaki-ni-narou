@@ -21,7 +21,7 @@ const prepareHelpButtonForPc = (option: HelpButtonOption) => {
   const label = option.showHelpLabel ? `<span class="icon-label">縦書きになろうヘルプ・設定</span>` : ""
 
   const button = $(
-    `<button class="tategaki-ni-narou-icon" title="縦書きになろうヘルプ・設定">${label}<img src="${chrome.runtime.getURL("icons/icon-48.png")}"></button>`
+    `<button class="tategaki-ni-narou-icon" title="縦書きになろうヘルプ・設定">${label}<img src="${chrome.runtime.getURL("icon/48.png")}"></button>`
   )
   button.on("click", show)
   base.append(button)

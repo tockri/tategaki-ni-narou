@@ -1,0 +1,199 @@
+:root {
+  --scrollBarWidth: 0;
+}
+/*
+* Reader
+*/
+.l-container:has(.p-novelgood-form) {
+  main.l-main {
+    width: calc(100vw - var(--scrollBarWidth)) !important;
+    margin: 0 !important;
+  }
+
+  article.p-novel {
+    font-weight: 200 !important;
+    margin: 0 !important;
+    padding: 20px 100px !important;
+    width: 100% !important;
+    height: calc(100vh - 180px) !important;
+    overflow-x: scroll !important;
+    overflow-y: hidden !important;
+    writing-mode: vertical-rl !important;
+    box-sizing: border-box !important;
+    opacity: 0%;
+    transition: opacity 0.2s ease-in-out;
+
+    .tategaki-ni-narou-sanserif & {
+      opacity: 100%;
+    }
+    // 明朝体
+    .tategaki-ni-narou-serif & {
+      opacity: 100%;
+      font-family: "Noto Serif JP", serif !important;
+    }
+
+    // ページャ移動前
+    .c-pager--center,
+    .p-novel__number {
+      display: none;
+    }
+  }
+
+  // まえがき
+  .p-novel__text--preface {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    padding-left: 30px;
+    border-bottom: 0 none;
+    border-left: 3px double var(--color-ui-border--emphasis);
+  }
+
+  // あとがき
+  .p-novel__text--afterword {
+    margin-top: 0;
+    padding-top: 0;
+    padding-right: 30px;
+    border-top: 0 none;
+    border-right: 3px double var(--color-ui-border--emphasis);
+  }
+
+  // ページャ移動後
+  .c-pager--center {
+    margin: 0;
+    gap: 60px;
+    .tnn_next-link {
+      order: 1;
+    }
+
+    .tnn_prev-link {
+      order: 3;
+    }
+    .tnn_index-link {
+      order: 2;
+    }
+    .p-novel__number {
+      margin: 0;
+      order: 2;
+    }
+  }
+
+  .c-pager--box {
+    .tnn_next-link-box {
+      order: 1;
+    }
+    .tnn_prev-link-box {
+      order: 3;
+    }
+    .tnn_index-link-box {
+      order: 2;
+    }
+    .p-novel__number {
+      order: 2;
+      display: block;
+      margin: 0;
+      padding-top: 9px;
+      text-align: center;
+    }
+  }
+}
+
+/*
+ * タップスクロール領域
+ */
+.tategaki-left,
+.tategaki-right {
+  position: absolute;
+  height: calc(100vh - 210px);
+  width: 15%;
+  background-color: transparent;
+  border: 0 none;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .help {
+    display: none;
+  }
+}
+.tategaki-left {
+  left: 0;
+}
+.tategaki-right {
+  right: 0;
+}
+
+/*
+ * 縦書きになろうアイコン
+ */
+.tategaki-ni-narou-icon {
+  position: absolute;
+  border: 0 none;
+  padding: 0;
+  top: 11px;
+  right: 100px;
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 28px;
+    height: 28px;
+  }
+  .icon-label {
+    margin: 0 4px;
+    color: #33aa66;
+  }
+}
+
+/*
+ * 縦書きになろうヘルプ
+ */
+.tategaki-ni-narou-help {
+  display: none;
+
+  .tategaki-ni-narou-help-open & {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+
+    .tategaki-left,
+    .tategaki-right {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+    }
+
+    .content {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 2em;
+      width: 65%;
+      box-sizing: border-box;
+
+      table {
+        margin-bottom: 2em;
+
+        td,
+        th {
+          padding: 16px 4px;
+          vertical-align: middle;
+        }
+        th:not(:first-child) {
+          padding-left: 90px;
+        }
+      }
+    }
+
+    .tategaki-left,
+    .tategaki-right {
+      .help {
+        display: block;
+      }
+    }
+  }
+}

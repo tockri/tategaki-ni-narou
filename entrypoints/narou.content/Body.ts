@@ -1,5 +1,5 @@
 import $ from "jquery"
-import { Config } from "../Config"
+import { Config } from "@/components/Config"
 
 const setBodyClass = (config: Config) => {
   if ($("body").length > 0) {
