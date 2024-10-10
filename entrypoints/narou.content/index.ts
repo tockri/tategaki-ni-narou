@@ -1,11 +1,12 @@
-import "./narou.scss"
-import $ from "jquery"
-import { jump, setupNovelReader } from "@/components/NovelReader"
 import { Config } from "@/components/Config"
-import { Pager } from "./Pager"
+import { jump, setupNovelReader } from "@/components/NovelReader"
+import $ from "jquery"
+import { Ad } from "./Ad"
 import { Body } from "./Body"
 import { Head } from "./Head"
 import { HelpButton } from "./HelpButton"
+import "./narou.scss"
+import { Pager } from "./Pager"
 
 export default defineContentScript({
   matches: [
@@ -16,24 +17,15 @@ export default defineContentScript({
   ],
   runAt: "document_start",
   main() {
-    const isMobile = () => $(".c-menu__body>.c-menu__first").length > 0
-
-    const config = new Config()
-
-    const setScrollbarWidth = () => {
-      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
-      // カスタムプロパティの値を更新する
-      document.documentElement.style.setProperty("--scrollBarWidth", `${scrollbarWidth}px`)
-    }
-
-    // リサイズしたとき
-    window.addEventListener("resize", setScrollbarWidth)
-
     $(() => {
-      setScrollbarWidth()
       const reader = $(".l-container:has(.p-novelgood-form) article.p-novel")
       if (reader.length) {
-        Body.setBodyClass(config)
+        const isMobile = () => $(".c-menu__body>.c-menu__first").length > 0
+
+        const config = new Config()
+
+        Ad.replace(reader)
+        Body.setBodyClass(config.useSerifOnNarou)
         Head.prepare()
         if (isMobile()) {
           Pager.prepareForMobile(reader)
@@ -43,7 +35,7 @@ export default defineContentScript({
             useSerifFont: config.useSerifOnNarou,
             onFontChanged: (font) => {
               config.setSerifOnNarou(font === "serif")
-              Body.setBodyClass(config)
+              Body.setBodyClass(config.useSerifOnNarou)
             },
             onHelpClosed: () => {
               config.hideHelpLabel()
