@@ -29,7 +29,7 @@ const prepareHelpButtonForPc = (option: HelpButtonOption) => {
     <div class="content">
       <h1>縦書きになろう</h1>
       <h2>設定</h2>
-      <table>
+      <table class="tategaki-ni-narou-form">
         <tbody>
           <tr>
             <th>フォント</th>
@@ -103,6 +103,10 @@ const prepareHelpButtonForPc = (option: HelpButtonOption) => {
   })
   serif.on("change", () => {
     option.onFontChanged("serif")
+  })
+  const form = $(".tategaki-ni-narou-form", helpPane)
+  form.on("click", (e) => {
+    e.stopPropagation()
   })
   helpPane.on("click", hide)
   $("body").append(helpPane)

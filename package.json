@@ -35,5 +35,8 @@
   },
   "dependencies": {
     "jquery": "^3.7.1"
+  },
+  "volta": {
+    "node": "22.9.0"
   }
 }
