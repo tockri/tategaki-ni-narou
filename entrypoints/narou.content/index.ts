@@ -20,14 +20,15 @@ export default defineContentScript({
     $(() => {
       const reader = $(".l-container:has(.p-novelgood-form) article.p-novel")
       if (reader.length) {
-        const isMobile = () => $(".c-menu__body>.c-menu__first").length > 0
-
+        const isMobile = $(".c-menu__body>.c-menu__first").length > 0
         const config = new Config()
 
         Ad.replace(reader)
         Body.setBodyClass(config.useSerifOnNarou)
-        Head.prepare()
-        if (isMobile()) {
+        Head.prepareWebFont()
+        Head.startScrollbarWidth()
+
+        if (isMobile) {
           Pager.prepareForMobile(reader)
         } else {
           HelpButton.prepareHelpButtonForPc({

@@ -1,5 +1,5 @@
-import $ from "jquery"
 import { jump, setupNovelReader } from "@/components/NovelReader"
+import $ from "jquery"
 import "./kakuyomuu.scss"
 
 export default defineContentScript({
@@ -9,7 +9,6 @@ export default defineContentScript({
     const init = (counter: number) => {
       const reader = $(".js-episode-body")
       if (reader.length) {
-        console.log("reader found!")
         $(document).scrollTop(0)
 
         reader.prepend($("#contentMain-header"))
@@ -35,7 +34,6 @@ export default defineContentScript({
         }
       }
     }
-    console.log("hello, kakuyomu content.")
     init(0)
   }
 })
