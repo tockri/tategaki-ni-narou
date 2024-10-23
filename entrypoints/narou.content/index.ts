@@ -9,12 +9,7 @@ import "./narou.scss"
 import { Pager } from "./Pager"
 
 export default defineContentScript({
-  matches: [
-    "https://ncode.syosetu.com/*",
-    "https://novel18.syosetu.com/*",
-    "http://ncode.syosetu.com/*",
-    "http://novel18.syosetu.com/*"
-  ],
+  matches: ["https://ncode.syosetu.com/*", "https://novel18.syosetu.com/*"],
   runAt: "document_start",
   main() {
     $(() => {
