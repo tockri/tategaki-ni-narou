@@ -34,6 +34,7 @@ export default defineContentScript({
               Body.setBodyClass(config.useSerifOnNarou)
             },
             onHelpClosed: () => {
+              console.log("onHelpClosed")
               config.hideHelpLabel()
             }
           })

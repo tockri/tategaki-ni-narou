@@ -4,11 +4,6 @@ const show = () => {
   $("body").addClass("tategaki-ni-narou-help-open")
 }
 
-const hide = () => {
-  $("body").removeClass("tategaki-ni-narou-help-open")
-  $(".tategaki-ni-narou-icon .icon-label").remove()
-}
-
 interface HelpButtonOption {
   showHelpLabel: boolean
   useSerifFont: boolean
@@ -17,6 +12,12 @@ interface HelpButtonOption {
 }
 
 const prepareHelpButtonForPc = (option: HelpButtonOption) => {
+  const hide = () => {
+    $("body").removeClass("tategaki-ni-narou-help-open")
+    $(".tategaki-ni-narou-icon .icon-label").remove()
+    option.onHelpClosed()
+  }
+
   const base = $(".c-menu__body")
   const label = option.showHelpLabel ? `<span class="icon-label">縦書きになろうヘルプ・設定</span>` : ""
 
