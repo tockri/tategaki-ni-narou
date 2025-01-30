@@ -1,7 +1,7 @@
 import $ from "jquery"
 
 const show = () => {
-  $("body").addClass("tategaki-ni-narou-help-open")
+  $("body").toggleClass("tategaki-ni-narou-help-open")
 }
 
 interface HelpButtonOption {

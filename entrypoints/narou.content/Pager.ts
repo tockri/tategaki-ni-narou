@@ -1,16 +1,21 @@
 import $ from "jquery"
 
-const modifyPagerForPc = (pager: JQuery): JQuery => {
+const modifyPagerForPc = (pager: JQuery, removeIndex: boolean): JQuery => {
   pager.find("a").each((_, a) => {
-    const text = a.innerHTML
+    const $a = $(a)
+    const text = $a.text()
     if (text.includes("目次")) {
-      a.className = "tnn_index-link"
+      if (removeIndex) {
+        $a.remove()
+      } else {
+        $a.addClass("tnn_index-link")
+      }
     } else if (text.includes("前へ")) {
-      a.innerHTML = "前へ&nbsp;&gt;&gt;"
-      a.className = "tnn_prev-link"
+      $a.html("前へ&nbsp;&gt;&gt;")
+      $a.addClass("tnn_prev-link")
     } else if (text.includes("次へ")) {
-      a.innerHTML = "&lt;&lt;&nbsp;次へ"
-      a.className = "tnn_next-link"
+      $a.html("&lt;&lt;&nbsp;次へ")
+      $a.addClass("tnn_next-link")
     }
   })
   return pager
@@ -19,16 +24,24 @@ const modifyPagerForPc = (pager: JQuery): JQuery => {
 const prepareForPc = (reader: JQuery) => {
   const topPager = reader.find(".c-pager:eq(0)")
   const novelNumber = reader.find(".p-novel__number:eq(0)")
-  const bottomPager = reader.find(".c-pager:eq(1)")
-  reader.before(modifyPagerForPc(topPager.append(novelNumber)))
-  reader.after(modifyPagerForPc(bottomPager))
+  topPager.append(novelNumber).addClass("tnn_top-pager")
+  modifyPagerForPc(topPager, true)
+
+  const bottomPager = reader.nextAll(".c-pager:eq(0)")
+  bottomPager.addClass("tnn_bottom-pager")
+  modifyPagerForPc(bottomPager, false)
+
+  reader.before(topPager)
+  reader.after(bottomPager)
 }
 
 const modifyPagerForMobile = (pager: JQuery, removeIndex: boolean): JQuery => {
+  console.debug("modifyPagerForMobile")
   pager.find("div.c-pager__block").each((_, div) => {
     const $div = $(div)
     const $a = $div.find("a")
     const text = $a.text()
+    console.debug(text)
     if (text.includes("目次")) {
       if (removeIndex) {
         $div.remove()
@@ -37,11 +50,11 @@ const modifyPagerForMobile = (pager: JQuery, removeIndex: boolean): JQuery => {
       }
     } else if (text.includes("前へ")) {
       $a.html("前へ&nbsp;&gt;&gt;")
-      $a[0].className = "tnn_prev-link"
+      $a.addClass("tnn_prev-link")
       $div.addClass("tnn_prev-link-box")
     } else if (text.includes("次へ")) {
       $a.html("&lt;&lt;&nbsp;次へ")
-      $a[0].className = "tnn_next-link"
+      $a.addClass("tnn_next-link")
       $div.addClass("tnn_next-link-box")
     } else if ($a.length === 0) {
       $div.remove()
@@ -51,11 +64,12 @@ const modifyPagerForMobile = (pager: JQuery, removeIndex: boolean): JQuery => {
 }
 
 const prepareForMobile = (reader: JQuery) => {
-  const topPager = reader.find(".c-pager:eq(0)")
+  const topPager = reader.prevAll(".c-pager:eq(0)")
   const novelNumber = reader.find(".p-novel__number:eq(0)")
-  const bottomPager = reader.find(".c-pager:eq(1)")
+  const bottomPager = reader.nextAll(".c-pager:eq(0)")
+  const bookmarkBar = reader.nextAll(".p-bookmark-bar:eq(0)")
   reader.before(modifyPagerForMobile(topPager, true).prepend(novelNumber.addClass("c-pager__block")))
-  reader.after(modifyPagerForMobile(bottomPager, false))
+  reader.after(bookmarkBar).after(modifyPagerForMobile(bottomPager, false))
 }
 
 export const Pager = {

@@ -5,7 +5,7 @@ export default defineConfig({
   manifest: {
     manifest_version: 3,
     name: "縦書きになろう",
-    version: "2.1.9",
+    version: "2.1.10",
     description: "「小説家になろう」と「カクヨム」を縦書きで読みやすくします。",
     web_accessible_resources: [
       {

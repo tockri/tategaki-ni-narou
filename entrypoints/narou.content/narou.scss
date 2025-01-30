@@ -59,12 +59,10 @@
 
   // ページャ移動後
   .c-pager--center {
-    margin: 0;
     gap: 60px;
     .tnn_next-link {
       order: 1;
     }
-
     .tnn_prev-link {
       order: 3;
     }
@@ -75,9 +73,23 @@
       margin: 0;
       order: 2;
     }
+    .c-pager__item {
+      border-right: 0 none;
+    }
+    .c-pager__item--before::before,
+    .c-pager__item--next::after {
+      display: none;
+    }
+    &.tnn_top-pager {
+      margin-bottom: 10px;
+    }
+    &.tnn_bottom-pager {
+      margin-top: 10px;
+    }
   }
 
-  .c-pager--box {
+  .c-pager--novel-box,
+  .c-pager--novel-box-with-bkm {
     .tnn_next-link-box {
       order: 1;
     }
@@ -93,6 +105,10 @@
       margin: 0;
       padding-top: 9px;
       text-align: center;
+    }
+    .c-pager__item--before::before,
+    .c-pager__item--next::after {
+      display: none;
     }
   }
 }
