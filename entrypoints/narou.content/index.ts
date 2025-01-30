@@ -13,7 +13,8 @@ export default defineContentScript({
   runAt: "document_start",
   main() {
     $(() => {
-      const reader = $(".l-container:has(.p-novelgood-form) article.p-novel")
+      const reader = $(".l-container:has(#novel_hyouka) article.p-novel")
+      console.log(reader)
       if (reader.length) {
         const isMobile = $(".c-menu__body>.c-menu__first").length > 0
         const config = new Config()
