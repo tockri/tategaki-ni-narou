@@ -47,7 +47,7 @@ export default defineContentScript({
             jump($(".tnn_index-link"))
           },
           myPage(): void {
-            jump($("a.c-menu__item:contains(ブックマーク)"))
+            jump($("a.p-bookmark-bar__bkm-link:contains(ブックマーク)"))
           },
           next(): void {
             jump($(".tnn_next-link"))
