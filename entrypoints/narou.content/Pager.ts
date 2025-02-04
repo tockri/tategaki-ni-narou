@@ -33,6 +33,9 @@ const prepareForPc = (reader: JQuery) => {
 
   reader.before(topPager)
   reader.after(bottomPager)
+
+  const bookmarkBar = $(".p-bookmark-bar:eq(0)")
+  bottomPager.after(bookmarkBar)
 }
 
 const modifyPagerForMobile = (pager: JQuery, removeIndex: boolean): JQuery => {
