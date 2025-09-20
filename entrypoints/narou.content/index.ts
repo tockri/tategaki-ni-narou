@@ -5,8 +5,9 @@ import { Ad } from "./Ad"
 import { Body } from "./Body"
 import { Head } from "./Head"
 import { HelpButton } from "./HelpButton"
-import "./narou.scss"
 import { Pager } from "./Pager"
+import { ToPageTopButton } from "./ToPageTopButton"
+import "./narou.scss"
 
 export default defineContentScript({
   matches: ["https://ncode.syosetu.com/*", "https://novel18.syosetu.com/*"],
@@ -22,6 +23,7 @@ export default defineContentScript({
         Body.setBodyClass(config.useSerifOnNarou)
         Head.prepareWebFont()
         Head.startScrollbarWidth()
+        ToPageTopButton.remove()
 
         if (isMobile) {
           Pager.prepareForMobile(reader)

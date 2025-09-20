@@ -15,14 +15,14 @@
     "postinstall": "wxt prepare"
   },
   "devDependencies": {
-    "@types/chrome": "^0.0.326",
-    "@types/jquery": "^3.5.32",
-    "npm-check-updates": "^18.0.1",
-    "prettier": "^3.5.3",
-    "prettier-plugin-organize-imports": "^4.1.0",
-    "sass-embedded": "^1.89.1",
-    "typescript": "^5.8.3",
-    "wxt": "^0.20.6"
+    "@types/chrome": "^0.1.12",
+    "@types/jquery": "^3.5.33",
+    "npm-check-updates": "^18.3.0",
+    "prettier": "^3.6.2",
+    "prettier-plugin-organize-imports": "^4.3.0",
+    "sass-embedded": "^1.93.0",
+    "typescript": "^5.9.2",
+    "wxt": "^0.20.11"
   },
   "prettier": {
     "semi": false,
