@@ -16,14 +16,14 @@
     "check": "npm-check-updates"
   },
   "devDependencies": {
-    "@types/chrome": "^0.1.27",
-    "@types/jquery": "^3.5.33",
-    "npm-check-updates": "^19.1.2",
-    "prettier": "^3.6.2",
+    "@types/chrome": "^0.1.37",
+    "@types/jquery": "^4.0.0",
+    "npm-check-updates": "^19.4.1",
+    "prettier": "^3.8.1",
     "prettier-plugin-organize-imports": "^4.3.0",
-    "sass-embedded": "^1.93.3",
+    "sass-embedded": "^1.97.3",
     "typescript": "^5.9.3",
-    "wxt": "^0.20.11"
+    "wxt": "^0.20.18"
   },
   "prettier": {
     "semi": false,
@@ -36,7 +36,7 @@
     ]
   },
   "dependencies": {
-    "jquery": "^3.7.1"
+    "jquery": "^4.0.0"
   },
   "volta": {
     "node": "22.9.0"
