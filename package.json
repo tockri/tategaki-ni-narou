@@ -18,7 +18,7 @@
   "devDependencies": {
     "@types/chrome": "^0.1.37",
     "@types/jquery": "^4.0.0",
-    "npm-check-updates": "^19.4.1",
+    "npm-check-updates": "^19.6.3",
     "prettier": "^3.8.1",
     "prettier-plugin-organize-imports": "^4.3.0",
     "sass-embedded": "^1.97.3",
