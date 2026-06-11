@@ -16,14 +16,14 @@
     "check": "npm-check-updates"
   },
   "devDependencies": {
-    "@types/chrome": "^0.1.39",
-    "@types/jquery": "^4.0.0",
-    "npm-check-updates": "^20.0.0",
-    "prettier": "^3.8.1",
+    "@types/chrome": "^0.1.43",
+    "@types/jquery": "^4.0.1",
+    "npm-check-updates": "^22.2.3",
+    "prettier": "^3.8.4",
     "prettier-plugin-organize-imports": "^4.3.0",
-    "sass-embedded": "^1.99.0",
-    "typescript": "^6.0.2",
-    "wxt": "^0.20.20"
+    "sass-embedded": "^1.100.0",
+    "typescript": "^6.0.3",
+    "wxt": "^0.20.26"
   },
   "prettier": {
     "semi": false,
