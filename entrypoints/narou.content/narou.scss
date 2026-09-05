@@ -13,7 +13,7 @@
   article.p-novel {
     font-weight: 200 !important;
     margin: 0 !important;
-    padding: 20px 100px !important;
+    padding: 20px 100px 20px 160px !important;
     width: 100% !important;
     height: calc(100vh - 180px) !important;
     overflow-x: scroll !important;
@@ -211,5 +211,28 @@
         display: block;
       }
     }
+  }
+}
+
+/* ブラックモード */
+.js-customlayout3,
+.js-customlayout2 {
+  header.c-menu {
+    background-color: inherit;
+    a.c-menu__item {
+      background-color: transparent;
+      color: var(--01-link);
+      &:hover {
+        background-color: transparent;
+        color: var(--color-custom-link-hover);
+      }
+    }
+  }
+  div.c-announce-box {
+    background-color: inherit;
+    color: var(--color-custom-text);
+  }
+  div.p-bookmark-bar {
+    background-color: inherit;
   }
 }
