@@ -1,15 +1,13 @@
 import $ from "jquery"
 
-export const jump = (elem: JQuery) => {
-  if (elem.length > 0) {
-    const a = elem[0].tagName === "A" && (elem[0] as HTMLAnchorElement)
-    if (a) {
-      location.href = a.href
-    }
+export const jump = (elem: JQuery): void => {
+  const [first] = elem
+  if (first?.tagName === "A") {
+    location.href = (first as HTMLAnchorElement).href
   }
 }
 
-export type NovelReaderConf = {
+export interface NovelReaderConf {
   prev: () => void
   next: () => void
   myPage: () => void
@@ -28,14 +26,14 @@ class Scroller {
   scrollLeftBy(h: number) {
     if (!this.locked) {
       this.locked = true
-      const sl = (this.reader.scrollLeft() || 0) - h
+      const sl = (this.reader.scrollLeft() ?? 0) - h
       this.reader.animate({ scrollLeft: sl }, () => {
         this.locked = false
       })
     }
   }
 
-  pageUp(rate: number = 1.0) {
+  pageUp(rate = 1.0) {
     const rw = this.reader.width()
     if (rw) {
       const pw = rw * (rw >= 360 ? 0.96 : 3.5)
@@ -43,7 +41,7 @@ class Scroller {
     }
   }
 
-  pageDown(rate: number = 1.0) {
+  pageDown(rate = 1.0) {
     const rw = this.reader.width()
     if (rw) {
       const pw = rw * (rw >= 360 ? 0.96 : 3.5)
@@ -54,20 +52,50 @@ class Scroller {
 
 const mapKeyEvents = (scroller: Scroller, conf: NovelReaderConf) => {
   const keyMap: Record<string, (e: JQuery.KeyDownEvent) => void> = {
-    " ": (e) => (e.shiftKey ? scroller.pageUp() : scroller.pageDown()),
-    PageUp: () => scroller.pageUp(),
-    PageDown: () => scroller.pageDown(),
-    End: () => scroller.scrollLeftBy(-99999),
-    Home: () => scroller.scrollLeftBy(99999),
-    ArrowLeft: (e) => (e.shiftKey ? scroller.pageDown(0.5) : scroller.scrollLeftBy(200)),
-    ArrowRight: (e) => (e.shiftKey ? scroller.pageUp(0.5) : scroller.scrollLeftBy(-200)),
+    " ": (e) => {
+      if (e.shiftKey) {
+        scroller.pageUp()
+      } else {
+        scroller.pageDown()
+      }
+    },
+    PageUp: () => {
+      scroller.pageUp()
+    },
+    PageDown: () => {
+      scroller.pageDown()
+    },
+    End: () => {
+      scroller.scrollLeftBy(-99999)
+    },
+    Home: () => {
+      scroller.scrollLeftBy(99999)
+    },
+    ArrowLeft: (e) => {
+      if (e.shiftKey) {
+        scroller.pageDown(0.5)
+      } else {
+        scroller.scrollLeftBy(200)
+      }
+    },
+    ArrowRight: (e) => {
+      if (e.shiftKey) {
+        scroller.pageUp(0.5)
+      } else {
+        scroller.scrollLeftBy(-200)
+      }
+    },
     h: conf.help,
     n: conf.next,
     m: conf.myPage,
     p: conf.prev,
     l: conf.index,
-    z: () => scroller.pageDown(0.5),
-    x: () => scroller.pageUp(0.5)
+    z: () => {
+      scroller.pageDown(0.5)
+    },
+    x: () => {
+      scroller.pageUp(0.5)
+    }
   }
   $(document).on("keydown", (e) => {
     const func = keyMap[e.key]
@@ -96,9 +124,13 @@ const makeScrollButtons = (reader: JQuery, scroller: Scroller) => {
   })
 }
 
-const rotateParentheses = ($elem: JQuery) => {
+const rotateParentheses = ($elem: JQuery): void => {
+  const [elem] = $elem
+  if (!elem) {
+    return
+  }
   const html = $elem.html()
-  $elem[0].innerHTML = html.replace(/[（）｛｝〔〕【】《》〈〉「」『』［］]/g, (m) => {
+  elem.innerHTML = html.replace(/[（）｛｝〔〕【】《》〈〉「」『』［］]/gu, (m) => {
     switch (m) {
       case "（":
         return "︵"
@@ -142,7 +174,7 @@ const rotateParentheses = ($elem: JQuery) => {
   })
 }
 
-export const setupNovelReader = (reader: JQuery, conf: NovelReaderConf) => {
+export const setupNovelReader = (reader: JQuery, conf: NovelReaderConf): void => {
   const scroller = new Scroller(reader)
   mapKeyEvents(scroller, conf)
   makeScrollButtons(reader, scroller)

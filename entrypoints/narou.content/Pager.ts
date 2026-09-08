@@ -21,7 +21,7 @@ const modifyPagerForPc = (pager: JQuery, removeIndex: boolean): JQuery => {
   return pager
 }
 
-const prepareForPc = (reader: JQuery) => {
+const prepareForPc = (reader: JQuery): void => {
   const topPager = reader.find(".c-pager:eq(0)")
   const novelNumber = reader.find(".p-novel__number:eq(0)")
   topPager.append(novelNumber).addClass("tnn_top-pager")
@@ -39,12 +39,10 @@ const prepareForPc = (reader: JQuery) => {
 }
 
 const modifyPagerForMobile = (pager: JQuery, removeIndex: boolean): JQuery => {
-  console.debug("modifyPagerForMobile")
   pager.find("div.c-pager__block").each((_, div) => {
     const $div = $(div)
     const $a = $div.find("a")
     const text = $a.text()
-    console.debug(text)
     if (text.includes("目次")) {
       if (removeIndex) {
         $div.remove()
@@ -66,7 +64,7 @@ const modifyPagerForMobile = (pager: JQuery, removeIndex: boolean): JQuery => {
   return pager.append("<div></div>")
 }
 
-const prepareForMobile = (reader: JQuery) => {
+const prepareForMobile = (reader: JQuery): void => {
   const topPager = reader.prevAll(".c-pager:eq(0)")
   const novelNumber = reader.find(".p-novel__number:eq(0)")
   const bottomPager = reader.nextAll(".c-pager:eq(0)")

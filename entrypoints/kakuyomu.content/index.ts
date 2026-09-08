@@ -26,12 +26,14 @@ export default defineContentScript({
           prev: () => {
             jump($("#contentMain-previousEpisode>a"))
           },
-          help: () => {}
+          help: () => {
+            // カクヨムではヘルプ・設定パネルを表示しない
+          }
         })
-      } else {
-        if (counter < 3) {
-          window.setTimeout(() => init(counter + 1), 300)
-        }
+      } else if (counter < 3) {
+        window.setTimeout(() => {
+          init(counter + 1)
+        }, 300)
       }
     }
     init(0)

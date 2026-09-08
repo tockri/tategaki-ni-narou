@@ -17,10 +17,9 @@ export default defineContentScript({
       const reader = $(".l-container:has(#novel_hyouka) article.p-novel")
       if (reader.length) {
         const isMobile = $(".c-menu__body>.c-menu__first").length > 0
-        const config = new Config()
 
         Ad.replace(reader)
-        Body.setBodyClass(config.useSerifOnNarou)
+        Body.setBodyClass(Config.useSerifOnNarou)
         Head.prepareWebFont()
         Head.startScrollbarWidth()
         ToPageTopButton.remove()
@@ -29,15 +28,14 @@ export default defineContentScript({
           Pager.prepareForMobile(reader)
         } else {
           HelpButton.prepareHelpButtonForPc({
-            showHelpLabel: config.isHelpLabelVisible,
-            useSerifFont: config.useSerifOnNarou,
+            showHelpLabel: Config.isHelpLabelVisible,
+            useSerifFont: Config.useSerifOnNarou,
             onFontChanged: (font) => {
-              config.setSerifOnNarou(font === "serif")
-              Body.setBodyClass(config.useSerifOnNarou)
+              Config.setSerifOnNarou(font === "serif")
+              Body.setBodyClass(Config.useSerifOnNarou)
             },
             onHelpClosed: () => {
-              console.log("onHelpClosed")
-              config.hideHelpLabel()
+              Config.hideHelpLabel()
             }
           })
           Pager.prepareForPc(reader)

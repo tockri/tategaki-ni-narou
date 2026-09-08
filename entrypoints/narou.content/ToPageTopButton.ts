@@ -1,6 +1,6 @@
 import $ from "jquery"
 
-const remove = () => {
+const remove = (): void => {
   if ($("body").length === 0) {
     setTimeout(remove, 100)
   } else {

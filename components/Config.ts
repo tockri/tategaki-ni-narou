@@ -1,25 +1,25 @@
-export class Config {
-  private getValue(key: string): string | null {
-    return localStorage.getItem("tategaki-ni-narou-" + key)
-  }
+const prefix = "tategaki-ni-narou-"
 
-  private setValue(key: string, value: string): void {
-    localStorage.setItem("tategaki-ni-narou-" + key, value)
-  }
+const getValue = (key: string): string | null => localStorage.getItem(`${prefix}${key}`)
 
+const setValue = (key: string, value: string): void => {
+  localStorage.setItem(`${prefix}${key}`, value)
+}
+
+export const Config = {
   get useSerifOnNarou(): boolean {
-    return this.getValue("serif-font-in-narou") !== "0"
-  }
+    return getValue("serif-font-in-narou") !== "0"
+  },
 
   setSerifOnNarou(value: boolean): void {
-    this.setValue("serif-font-in-narou", value ? "1" : "0")
-  }
+    setValue("serif-font-in-narou", value ? "1" : "0")
+  },
 
   get isHelpLabelVisible(): boolean {
-    return this.getValue("show-help-label") !== "0"
-  }
+    return getValue("show-help-label") !== "0"
+  },
 
   hideHelpLabel(): void {
-    this.setValue("show-help-label", "0")
+    setValue("show-help-label", "0")
   }
 }

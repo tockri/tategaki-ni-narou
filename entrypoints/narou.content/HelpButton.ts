@@ -1,6 +1,6 @@
 import $ from "jquery"
 
-const show = () => {
+const show = (): void => {
   $("body").toggleClass("tategaki-ni-narou-help-open")
 }
 
@@ -11,8 +11,8 @@ interface HelpButtonOption {
   onFontChanged(font: "serif" | "sanserif"): void
 }
 
-const prepareHelpButtonForPc = (option: HelpButtonOption) => {
-  const hide = () => {
+const prepareHelpButtonForPc = (option: HelpButtonOption): void => {
+  const hide = (): void => {
     $("body").removeClass("tategaki-ni-narou-help-open")
     $(".tategaki-ni-narou-icon .icon-label").remove()
     option.onHelpClosed()
@@ -22,7 +22,7 @@ const prepareHelpButtonForPc = (option: HelpButtonOption) => {
   const label = option.showHelpLabel ? `<span class="icon-label">縦書きになろうヘルプ・設定</span>` : ""
 
   const button = $(
-    `<button class="tategaki-ni-narou-icon" title="縦書きになろうヘルプ・設定">${label}<img src="${chrome.runtime.getURL("icon/48.png")}"></button>`
+    `<button class="tategaki-ni-narou-icon" title="縦書きになろうヘルプ・設定">${label}<img src="${browser.runtime.getURL("/icon/48.png")}"></button>`
   )
   button.on("click", show)
   base.append(button)

@@ -1,6 +1,6 @@
 import $ from "jquery"
 
-const setBodyClass = (useSerifOnNarou: boolean) => {
+const setBodyClass = (useSerifOnNarou: boolean): void => {
   if ($("body").length > 0) {
     if (useSerifOnNarou) {
       $("body").addClass("tategaki-ni-narou-serif").removeClass("tategaki-ni-narou-sanserif")
@@ -8,7 +8,9 @@ const setBodyClass = (useSerifOnNarou: boolean) => {
       $("body").addClass("tategaki-ni-narou-sanserif").removeClass("tategaki-ni-narou-serif")
     }
   } else {
-    setTimeout(() => setBodyClass(useSerifOnNarou), 50)
+    setTimeout(() => {
+      setBodyClass(useSerifOnNarou)
+    }, 50)
   }
 }
 
