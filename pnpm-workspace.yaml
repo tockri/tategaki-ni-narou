@@ -1,2 +1,11 @@
 allowBuilds:
+  '@parcel/watcher': true
   esbuild: true
+
+overrides:
+  brace-expansion@1: 1.1.21
+  fast-uri: 3.1.9
+  node-forge: 1.4.3
+  shell-quote: 1.11.0
+  source-map-js: 1.2.2
+  undici: 7.30.1
